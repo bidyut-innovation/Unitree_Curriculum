@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Robotics from Ground Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+        <h1>Learning Robotics From Ground Up</h1>
+        <p class="subtitle">Let's Innovate</p>
+        <img src="Certificate.png" alt="Bidyut Logo" 
+        style="position: absolute; right: 20px; top: -55px; height: 250px; width: 200px; object-fit: fill;">
+    </header>
+
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <h3>ROS2 with C++</h3>
+            <ul>
+                <li><a href="#cpp-setup" class="active">C++ Setup</a></li>
+                <li><a href="#workspace-setup">Workspace Setup</a></li>
+                <li><a href="#create-package">Create Package</a></li>
+                <li><a href="#package-structure">Package Structure</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="sidebar-toggle"></div>
+
+    <div class="container">
+        <main>
+            <section id="cpp-setup">
+                <h2>C++ Setup for ROS2</h2>
+                <p>C++ is the preferred language for performance-critical robotics applications. We'll set up a C++ development environment optimized for ROS2 development.</p>
+                
+                <h3>Step 1: Install C++ Compiler</h3>
+                <p>Install the GNU C++ compiler and build tools:</p>
+                <pre><code>sudo apt update
+sudo apt install g++ build-essential cmake</code></pre>
+
+                <h3>Step 2: Verify GCC Version</h3>
+                <p>ROS2 Humble requires GCC 11 or newer:</p>
+                <pre><code>g++ --version</code></pre>
+                <p>You should see output similar to:</p>
+                <pre>g++ (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0</pre>
+
+                <h3>Step 3: Install ROS2 C++ Dependencies</h3>
+                <pre><code>sudo apt install ros-humble-rclcpp ros-humble-std-msgs ros-humble-geometry-msgs</code></pre>
+
+                <div class="note">
+                    <p>For development, you may also want to install these useful tools:</p>
+                    <pre><code>sudo apt install clang clang-tidy clang-format gdb</code></pre>
+                </div>
+            </section>
+
+            <section id="workspace-setup">
+                <h2>ROS2 C++ Workspace Setup</h2>
+                <p>The workspace setup is similar for C++ and Python, but the build process differs.</p>
+                
+                <h3>Step 1: Create the ROS2 Workspace</h3>
+                <pre><code>mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws</code></pre>
+                
+                <h3>Step 2: Source ROS2 Environment</h3>
+                <pre><code>source /opt/ros/humble/setup.bash</code></pre>
+
+                <h3>Step 3: Build the Empty Workspace</h3>
+                <pre><code>colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release</code></pre>
+                
+                <div class="note">
+                    <p>The <code>--cmake-args</code> flag allows passing CMake-specific arguments. For debugging, use <code>-DCMAKE_BUILD_TYPE=Debug</code>.</p>
+                </div>
+            </section>
+
+            <section id="create-package">
+                <h2>Creating Your First ROS2 C++ Package</h2>
+                
+                <h3>1. Create a New C++ Package</h3>
+                <pre><code>ros2 pkg create --build-type ament_cmake --node-name cpp_node cpp_package</code></pre>
+                <p>This creates:</p>
+                <ul>
+                    <li>src/cpp_node.cpp → Your C++ node source</li>
+                    <li>CMakeLists.txt → Build configuration</li>
+                    <li>package.xml → Package metadata</li>
+                </ul>
+
+                <h3>2. Build the Package</h3>
+                <pre><code>cd ~/ros2_ws
+colcon build --packages-select cpp_package</code></pre>
+
+                <h3>3. Run Your C++ Node</h3>
+                <pre><code>source install/setup.bash
+ros2 run cpp_package cpp_node</code></pre>
+            </section>
+
+            <section id="package-structure">
+                <h2>C++ Package Structure</h2>
+                
+                <div class="note">
+                    <div class="note-title">Typical C++ Package Structure</div>
+                    <pre>cpp_package/
+├── CMakeLists.txt
+├── include/
+│   └── cpp_package/
+│       └── header.hpp
+├── src/
+│   ├── cpp_node.cpp
+│   └── (other source files)
+├── package.xml
+└── test/</pre>
+                </div>
+                
+                <h3>Key Files and Folders:</h3>
+                <ul>
+                    <li><strong>CMakeLists.txt</strong> - Build configuration for C++</li>
+                    <li><strong>include/</strong> - Header files</li>
+                    <li><strong>src/</strong> - C++ source files</li>
+                    <li><strong>package.xml</strong> - Package metadata and dependencies</li>
+                </ul>
+
+                <h3>Example CMakeLists.txt</h3>
+                <pre><code class="language-cmake">cmake_minimum_required(VERSION 3.8)
+project(cpp_package)
+
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+
+add_executable(cpp_node src/cpp_node.cpp)
+ament_target_dependencies(cpp_node rclcpp)
+
+install(TARGETS
+  cpp_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+ament_package()</code></pre>
+            </section>
+
+            <section id="additional-resources">
+                <h2>Additional Resources</h2>
+                <div class="note">
+                    <div class="note-title">Official ROS2 C++ Tutorials</div>
+                    <ul>
+                        <li>
+                            <a href="https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html" target="_blank">
+                                Writing a Simple C++ Publisher and Subscriber
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Service-And-Client.html" target="_blank">
+                                Writing a Simple C++ Service and Client
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 Bidyut innovation. All rights reserved.</p>
+          
+        </footer>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>

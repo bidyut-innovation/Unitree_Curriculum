@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Robotics from Ground Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+        <h1>Learning Robotics From Ground Up</h1>
+        <p class="subtitle">Let's Innovate</p>
+        <img src="Certificate.png" alt="Bidyut Logo" 
+        style="position: absolute; right: 20px; top: -55px; height: 250px; width: 200px; object-fit: fill;">
+    </header>
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <h3>ROS2 with Python</h3>
+            <ul>
+                <li><a href="#python-setup" class="active">Python Setup</a></li>
+                <li><a href="#workspace-setup">Workspace Setup</a></li>
+                <li><a href="#create-package">Create Package</a></li>
+                <li><a href="#package-structure">Package Structure</a></li>
+                <li><a href="#launch-files">Launch File</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="sidebar-toggle"></div>
+
+    <div class="container">
+        <main>
+            <section id="python-setup">
+                <h2>Python Setup for ROS2</h2>
+                <p>Python is widely used in robotics due to its simplicity and extensive library support. We are going to create and implement some basic python based programs in ROS2 and understand how the journey to Mastering Robotics starts . we're going to install Python 3 and set up a clean development environment, perfect for working with ROS2. Let's get started!</p>
+                
+                <h3>Step 1: Check Python Version</h3>
+                <p>Most Ubuntu systems already come with Python 3 pre-installed. You can check it with this command.</p>
+                <pre><code>python3 --version</code></pre>
+
+                <h3>Step 2: Install Python + pip</h3>                                                                                                                                                                                                                                                                                                                                                                             
+                <p>If Python isn't installed or pip is missing, just run this command to install them.</p>
+                <pre><code>sudo apt update
+sudo apt install python3 python3-pip -y</code></pre>
+
+                <h3>Step 3: Setup Virtual Environment</h3>
+               
+                <p>A virtual environment is a Python environment in isolation that has all dependencies isolated from the system Python. During ROS 2 development, it prevents version conflicts, keeps your projects tidy, enables safe testing of libraries such as rclpy or opencv-python, and makes your setup simpler to share and replicate.Now let's create a virtual environment. This helps us manage Python packages separately for each project — super useful when working with ROS2 nodes.</p>
+                     <pre><code>sudo apt install python3-venv
+python3 -m venv myenv
+source myenv/bin/activate</code></pre>
+
+                <h3>Step 4: Install Basic Packages</h3>
+                <pre><code>pip install numpy matplotlib pandas</code></pre>
+              
+                <p>That's it! Python is installed along with some of the most popular libraries, and your development environment is ready.</p>
+            </section>
+
+            <section id="workspace-setup">
+                <h2>ROS2 Python Workspace Setup (colcon)</h2>
+                <p>A ROS 2 workspace is a directory in which you create, build, and organize your ROS 2 packages. It maintains your code, build artifacts, and installed outputs in order, enabling you to develop several packages simultaneously, build them with tools such as colcon, and source the environment for easy execution and testing.</p>
+                
+                <h3>Step 1: Create the ROS2 Workspace</h3>
+                <pre><code>mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws</code></pre>
+                
+                <h3>Step 2: Source ROS2 Environment</h3>
+                <p>Before building anything, always source the ROS2 setup script:</p>
+                <pre><code>source /opt/ros/humble/setup.bash</code></pre>
+              
+
+                <h3>Step 3: Build the Empty Workspace</h3>
+                <p>From inside ~/ros2_ws:</p>
+                <pre><code>colcon build</code></pre>
+                <p>You'll see:</p>
+                <pre>Starting >>> ...
+Finished <<< ...</pre>
+                <p>Even though our workspace is empty now, colcon build initializes the build system. Later, we'll add our own packages here.</p>
+
+                <h3>Step 4: Source the Workspace (After Build)</h3>
+                <pre><code>source install/setup.bash</code></pre>
+          
+
+                <h3>Step 5: Check Your Workspace Is Working</h3>
+                <pre><code>ros2 pkg list | grep demo</code></pre>
+                <p>You should see some demo packages like:</p>
+                <pre>demo_nodes_cpp
+demo_nodes_py</pre>
+
+                <h3>Final Folder Structure Now Looks Like:</h3>
+                <pre>ros2_ws/
+├── build/
+├── install/
+├── log/
+└── src/</pre>
+            </section>
+
+            <section id="create-package">
+                <h2>Creating Your First ROS2 Python Package</h2>
+                
+                <h3>1. Navigate to src Directory</h3>
+                <pre><code>cd ~/ros2_ws/src</code></pre>
+
+                <h3>2. Create a New ROS2 Python Package</h3>
+                <p>Use this command (with a node):</p>
+                <pre><code>ros2 pkg create --build-type ament_python --node-name my_node my_package</code></pre>
+                <p>This creates:</p>
+                <ul>
+                    <li>my_package/my_node.py → Your Hello World node</li>
+                    <li>setup.py, setup.cfg, package.xml</li>
+                    <li>resource/, test/, __init__.py, etc.</li>
+                </ul>
+                <p> Terminal will confirm creation with:</p>
+                <pre>going to create a new package
+...
+creating ./my_package/my_package/my_node.py</pre>
+
+                <h3>3. Build the Package</h3>
+                <p>Return to your workspace root:</p>
+                <pre><code>cd ~/ros2_ws
+colcon build</code></pre>
+                <p> To build only this package later:</p>
+                <pre><code>colcon build --packages-select my_package</code></pre>
+                <div class="note">
+                    <p><code>--packages-select </code> : we use this argument for choosing a specific package to build.</p>
+                </div>
+
+                <h3>4. Source the Workspace</h3>
+                <p>Before using your package:</p>
+                <pre><code>source install/local_setup.bash</code></pre>
+
+                <h3>5. Run Your Node</h3>
+                <p>Run the node created by --node-name:</p>
+                <pre><code>ros2 run my_package my_node</code></pre>
+                <p>Output:</p>
+                <pre>Hi from my_package.</pre>
+            </section>
+
+            <section id="package-structure">
+                <h2>Package Structure and Configuration</h2>
+                
+                <h3>Package Contents Overview</h3>
+                <p>Navigate to:</p>
+                <pre><code>cd ~/ros2_ws/src/my_package
+ls </code></pre>
+                <p>You will see:</p>
+                <pre>my_package/  package.xml  resource/  setup.cfg  setup.py  test/</pre>
+                <p>Your node is located at:</p>
+                <pre><code>my_package/my_package/my_node.py</code></pre>
+              
+                
+                <div class="note">
+                    <div class="note-title">Typical Python Package Structure</div>
+                    <pre>py_package/
+├── package.xml
+├── setup.py
+├── setup.cfg
+├── resource/
+├── test/
+└── src/
+    └── py_package/
+        ├── __init__.py
+        ├── your_script.py
+        └── (other Python files)</pre>
+                </div>
+                
+                <h4>Key Files and Folders:</h4>
+                <ul>
+                    <li>
+                        <strong>package.xml</strong> - Contains meta-information about the package (maintainer, dependencies, license, etc.)
+                    </li>
+                    <li>
+                        <strong>setup.py</strong> - Contains instructions for how to compile/install the package
+                    </li>
+                    <li>
+                        <strong>setup.cfg</strong> - Defines where the scripts will be installed
+                    </li>
+                    <li>
+                        <strong>src/&lt;package_name&gt;</strong> - Directory with same name as your package containing all Python scripts
+                        <ul>
+                            <li>Always contains an empty <code>__init__.py</code> file by default</li>
+                            <li>Your main Python nodes go here</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>resource/</strong> - For package-specific resource files
+                    </li>
+                    <li>
+                        <strong>test/</strong> - Contains package test files
+                    </li>
+                    <li>
+                        <strong>launch/</strong> - (Optional) Contains launch files for the package
+                    </li>
+                </ul>
+
+
+         
+            </section>
+            <section id="additional-resources">
+                <h2>Additional Resources</h2>
+                <div class="note">
+                    <div class="note-title">Official ROS2 Tutorials</div>
+                    <p>For more detailed examples and explanations, check out these official ROS2 documentation pages:</p>
+                    <ul>
+                        <li>
+                            <a href="https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html" target="_blank">
+                                Writing a Simple Publisher and Subscriber (Python)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html" target="_blank">
+                                Writing a Simple Service and Client (Python)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section id="launch-files">
+                <h2>Creating Launch Files</h2>
+                <p>Launch file performs the following actions:
+ <ul>      
+<li>Setup command line arguments with defaults</li>
+
+<li>Include another launch file</li>
+
+<li>Include another launch file in another namespace</li>
+
+<li>Start a node and setting its namespace</li>
+
+<li>Start a node, setting its namespace, and setting parameters in that node (using the args)</li>
+
+<li>Create a node to remap messages from one topic to another</li> 
+     </ul>
+Launch files allow you to start multiple nodes and configure their parameters automatically.Launch file can be implemented in XML, YAML, and Python.
+Here's how to add one to your package:</p>
+                
+                <h3>1. Create launch directory</h3>
+                <pre><code>cd ~/ros2_ws/src/py_pubsub
+mkdir launch</code></pre>
+                
+                <h3> 2. Create launch file</h3>
+                <p>Create a new file <code>py_pubsub/launch/pubsub_launch.py</code> with:</p>
+                <pre><code class="language-python">from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    return LaunchDescription([
+        Node(
+            package='py_pubsub',
+            executable='talker',
+            name='talker'
+        ),
+        Node(
+            package='py_pubsub',
+            executable='listener', 
+            name='listener'
+        )
+    ])</code></pre>
+    <div class="note">
+        <div class="note-title">Important Naming Convention</div>
+        <p>ROS 2 launch files must follow specific naming patterns to be automatically discovered:</p>
+        <ul>
+            <li>Python launch files should end with <code>launch.py</code></li>
+        </ul>
+        <p>For our example, we're using <code>pubsub_launch.py</code> which follows the correct Python launch file naming pattern.</p>
+    </div>
+                <h3>3. Update package.xml</h3>
+                <p>Add these dependencies:</p>
+                <pre><code class="language-xml">&lt;exec_depend&gt;launch&lt;/exec_depend&gt;
+&lt;exec_depend&gt;ros2launch&lt;/exec_depend&gt;</code></pre>
+
+                <h3>4. Update setup.py</h3>
+                <p>Add the launch directory to data_files:</p>
+                <pre><code class="language-python">import os
+from glob import glob
+from setuptools import setup
+
+setup(
+    # ... existing configuration ...
+    data_files=[
+        # ... other files ...
+        (os.path.join('share', package_name, 'launch'), 
+        glob(os.path.join('launch', '*launch.[pxy][yma]*'))
+    ]
+)</code></pre>
+
+                <h3> 5. Build and run</h3>
+                <pre><code>cd ~/ros2_ws
+colcon build --packages-select py_pubsub
+source install/setup.bash
+ros2 launch py_pubsub pubsub_launch.py</code></pre>
+
+                <div class="note">
+                    <div class="note-title">Official Launch Files Tutorial</div>
+                    <p>For more detailed examples and explanations of launch files, check out the official ROS2 documentation:</p>
+                    <p><a href="https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Creating-Launch-Files.html" target="_blank">https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Creating-Launch-Files.html</a></p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 Bidyut innovation. All rights reserved.</p>
+         
+        </footer>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>

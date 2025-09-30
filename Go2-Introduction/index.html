@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unitree GO2 EDU Quadruped Robot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+        <h1>Learning Robotics From Ground Up</h1>
+        <p class="subtitle">Let's Innovate</p>
+        <img src="Certificate.png" alt="Bidyut Logo" 
+        style="position: absolute; right: 20px; top: -55px; height: 250px; width: 200px; object-fit: fill;">
+    </header>
+
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <h3>GO2 EDU Documentation</h3>
+            <ul>
+                <li><a href="#overview" class="active">Overview</a></li>
+                <li><a href="#hardware">Hardware Components</a></li>
+                <li><a href="#software">Software Stack</a></li>
+                <li><a href="#sensors">Sensor Systems</a></li>
+                <li><a href="#motion">Motion System</a></li>
+       
+            </ul>
+        </nav>
+    </div>
+
+    <div class="sidebar-toggle"></div>
+
+    <div class="container">
+        <main>
+            <section id="overview">
+                <h2>Overview of GO2 EDU Quadruped Robot</h2>
+                <p>The Unitree GO2 EDU is a compact, agile, and intelligent quadruped robot designed for education, research, and development. Building upon the success of earlier quadruped robots like the Unitree Go1, the GO2 enhances mobility, AI integration, and user accessibility, making it an ideal platform for robotics for research, inspection, and human-robot interaction. It's simple and easy to use for those who are passionate about learning Robotics.</p>
+                
+                <h3>Key Features</h3>
+                <div class="columns">
+                    <div class="column">
+                        <h4>High Mobility & Dynamic Motion</h4>
+                        <ul>
+                            <li>Advanced servo motors enabling smooth walking, running, and obstacle navigation</li>
+                            <li>Real-time adaptive movement (adjusts to terrain changes)</li>
+                            <li>Capable of small jumps, trotting, and dynamic balancing</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>AI & Vision Capabilities</h4>
+                        <ul>
+                            <li>Equipped with depth cameras (Intel Realsense d435i), RGB vision, and LiDAR (Hesai XT-16)</li>
+                            <li>Supports object recognition, human following, and SLAM</li>
+                            <li>AI-powered interaction (voice commands, gesture control)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <h4>Modular & Programmable</h4>
+                        <ul>
+                            <li>Open-source SDK (Python, C++, ROS 2 support)</li>
+                            <li>Customizable behaviors via APIs for motion control, sensor feedback, and AI processing</li>
+                            <li>Simulation compatibility (Gazebo, Isaac Sim, Genesis or Mujoco for virtual testing)</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>Compact Design & Sensors</h4>
+                        <ul>
+                            <li>Weighs around ~15 kg (varies by configuration & hardware)</li>
+                            <li>Portable for lab, indoor, and outdoor experiments</li>
+                            <li>IMU for balance and orientation</li>
+                            <li>Force-sensitive resistors on feet for terrain adaptation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="hardware">
+                <h2>Hardware Components</h2>
+                
+                <h3>AI Board (Computing Unit)</h3>
+                <p><strong>Jetson Orin NX 16GB (100 TOPS): The Brain Behind Unitree GO2 Edu</strong></p>
+                <p>The Unitree GO2 Edu robot is embedded with the Jetson Orin NX 16GB module that delivers 100 TOPS AI performance. This allows the GO2 Edu to make advanced real-time AI operations. This platform has a 1024-core NVIDIA Ampere GPU, 32 Tensor Cores, and an 8-core Arm Cortex-A78AE CPU (2GHz) which ensures parallel processing with speed and power. This makes it capable of handling AI-based SLAM, Obstacle Avoidance, and Computer Vision Gaming. Further, the Deep Learning Accelerators (NVDLA v2) and Vision Accelerator (PVA v2) help in processing large volumes of visual and sensory data. This makes it suitable for robotic autonomy, perception and deep learning inference on GO2 Edu.</p>
+                
+                <div class="note">
+                    <p class="note-title">Note:</p>
+                    <p>In the below image you can see the entire architecture of Jetson Orin Nx that we are using. It is placed on top of the Robot Dog. We will find a lot of custom ports which we will use to attach different hardware and sensors.</p>
+               
+                    <img src="motherboard.png" alt="Description" style="max-width:100%; height:auto; display:block; margin:1rem auto; border-radius:4px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                </div>
+                <p>The Unitree GO2 Expansion Dock offers a comprehensive range of power, communication, and peripheral interfaces to enhance robotic functionality.</p> 
+                <div style="display: flex; justify-content: space-between; gap: 1rem; margin: 1rem 0;">
+                    <img src="jetson_top.png" alt="Top View" style="max-width:32%; height:auto; border-radius:4px; rgba(0,0,0,0.1);">
+                    <img src="jetson_input.png" alt="Input Ports" style="max-width:32%; height:auto; border-radius:4px;  rgba(0,0,0,0.1);">
+                    <img src="jetson_output.png" alt="Output Ports" style="max-width:32%; height:auto; border-radius:4px;  rgba(0,0,0,0.1);">
+                </div>
+                <br>
+                <p><strong>Pin Chart</strong></p>
+                <img src="jetson pin chart.png" alt="Description" style="max-width:200%; height:200px; display:block; margin:1rem auto; border-radius:4px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+
+                 
+                    <div class="table-container">
+                        <table class="interface-table">
+                            <thead>
+                                <tr>
+                                    <th>Interface</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>XT30U-F Power Interface</td>
+                                    <td>
+                                        <ul>
+                                            <li>16V Input: Powers the GO2 robot</li>
+                                            <li>45V Input: Powers the robotic arm</li>
+                                            <li>12V Output: 1 port, 3A (for external devices)</li>
+                                            <li>5V Output: 1 port, 3A (for external devices)</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Gigabit Ethernet Interface</td>
+                                    <td>
+                                        <ul>
+                                            <li>Total Ports: 2 (Standard RJ45)</li>
+                                            <li>Connections: 1 channel to GO2, 1 channel for external use</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>M8 Aviation Plug Interface</td>
+                                    <td>
+                                        <ul>
+                                            <li>Total Ports: 1 (Standard European aviation plug)</li>
+                                            <li>Power Output: 1 channel 12V/2A (for powering radar)</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>USB-Type A Interface (USB 3.2 Gen2)</td>
+                                    <td>
+                                        <ul>
+                                            <li>Total Ports: 1</li>
+                                            <li>Supported Mode: USB Host Only</li>
+                                            <li>Power Output: 5V/1A</li>
+                                            <li>Transfer Speed: Up to 10Gbps</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>USB-DP Alt Mode Type-C</td>
+                                    <td>
+                                        <ul>
+                                            <li>Total Ports: 1</li>
+                                            <li>Supported Modes: USB 2.0, DP 1.4 (Alt Mode Output)</li>
+                                            <li>Power Output: 5V/3A</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>USB-Type C Interface (USB 3.2 Gen2)</td>
+                                    <td>
+                                        <ul>
+                                            <li>Total Ports: 1</li>
+                                            <li>Supported Mode: USB 3.2 Gen2</li>
+                                            <li>Power Output: 5V/2A</li>
+                                            <li>Use Case: For connecting a depth camera</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>GH1.25-4PIN Interface</td>
+                                    <td>
+                                        <ul>
+                                            <li>Total Ports: 1</li>
+                                            <li>Connections: 1 Gigabit Ethernet channel for external networking</li>
+                                            <li>Use Case: For controlling the robotic arm</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                
+                
+                
+                <h3>Control Board</h3>
+                <p>The control board is the central nervous system of the GO2's locomotion, translating high-level movement commands into precise, real-time motor actions. Unlike industrial robots that rely on proprietary black-box controllers, the GO2's architecture is designed for transparency—making it an ideal platform for learning and experimentation.</p>
+                <p>In the Robot it consists of 12 servo motors named GO-M8010-6 it is a high-performance brushless DC motor used in the Unitree GO2, relying on RS-485 serial communication for real-time control.</p>
+                
+                <h4>Core Responsibilities</h4>
+                <ul>
+                    <li><strong>Motor Actuation:</strong> Generates high-frequency PWM signals to drive the 12 brushless DC (BLDC) motors (three per leg). Implements torque, velocity, and position control loops running at 1 kHz or faster to ensure dynamic stability.</li>
+                    <li><strong>Gait Execution:</strong> Stores pre-programmed gaits (walk, trot, jump) and dynamically adjusts them based on IMU feedback and foot force sensors.</li>
+                    <li><strong>Safety Enforcement:</strong> Implements hardware-level overcurrent shutdown and emergency stops if communication with the AI board is lost.</li>
+                </ul>
+            </section>
+
+            <section id="sensors">
+                <h2>Sensors</h2>
+                <p>Now, let's explore the sensor suite of the Unitree GO2 robot - the sophisticated array of perception systems that give this quadruped its remarkable awareness and intelligence.</p>
+                <img src="go2 u4.png" alt="Description" style="max-width:100%; height:auto; display:block; margin:1rem auto; border-radius:4px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+
+                <h3>The Eyes of the GO2: Vision Systems</h3>
+                <p>At the front of the GO2 sits its primary vision system, featuring a high-definition camera capable of streaming crisp 1080p or 720p video at 15fps. With its wide 120° field of view and light-sensitive F2.2 aperture, this camera serves as the robot's primary visual interface with the world.</p>
+                
+                <h3>Depth Perception: The RealSense Advantage</h3>
+                <p>Complementing the standard camera is the Intel RealSense D435i depth sensor - a game-changer for spatial awareness. This sophisticated device creates detailed 3D maps of the environment by projecting and analyzing infrared patterns. With its ability to detect objects as close as just 10.5cm and operate at up to 90fps, the D435i gives the GO2 an almost human-like understanding of space and distance with a range of 0.3-3m.</p>
+                
+                <h3>The Laser Guide: LiDAR Systems</h3>
+                <p>Perhaps the most technologically impressive sensors are the GO2's LiDAR options. The standard 4D LiDAR performs a staggering 21,600 scans every second, building comprehensive 3D maps in real time. For more demanding applications, the robot is equipped with professional-grade options like the Hesai XT16, which offers a 360° horizontal field of view and 30° vertical coverage environmental scanning.</p>
+                
+                <h3>Feeling the Ground: Tactile Feedback</h3>
+                <p>What truly sets the GO2 apart is how it "feels" its environment. Each foot contains sensitive foot force sensors that measure ground contact with remarkable precision. These aren't just simple pressure detectors - they're sophisticated instruments that can sense subtle variations in terrain, allowing the robot to adjust its gait on the fly.</p>
+                
+                <h3>The Balance Master: IMU System</h3>
+                <p>At the core of the sensor array is the advanced IMU (Inertial Measurement Unit). This isn't just a simple orientation sensor - it's a high-precision system that tracks the robot's every tilt, turn, and acceleration with extreme accuracy.</p>
+            </section>
+
+            <section id="motion">
+                <h2>The GO2's Motion System - Actuators and Joint Architecture</h2>
+                <p>The Unitree GO2's sophisticated mobility stems from twelve precisely coordinated joints - three per leg - arranged in a biologically inspired configuration. The maximum torque a joint can generate is around 45N-m.</p>
+                
+                <h3>Leg Configuration</h3>
+                <ul>
+                    <li><strong>Front Right (FR):</strong> Leg 0</li>
+                    <li><strong>Front Left (FL):</strong> Leg 1</li>
+                    <li><strong>Rear Right (RR):</strong> Leg 2</li>
+                    <li><strong>Rear Left (RL):</strong> Leg 3</li>
+                </ul>
+                <img src="go2 dof.png" alt="Description" style="max-width:100%; height:auto; display:block; margin:1rem auto; border-radius:4px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+
+                <h3>Joint Types</h3>
+                <ul>
+                    <li><strong>Hip (Joint 0):</strong> Controls side-to-side swinging motion</li>
+                    <li><strong>Thigh (Joint 1):</strong> Manages forward/backward leg movement</li>
+                    <li><strong>Calf (Joint 2):</strong> Adjusts knee extension</li>
+                </ul>
+                <img src="go2 2d model.png" alt="Description" style="max-width:100%; height:auto; display:block; margin:1rem auto; border-radius:4px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+
+                
+                <h3>Joint Range of Motion Specifications</h3>
+                <ul>
+                    <li>Asymmetric thigh ranges (-200°/+90° front vs -260°/+30° rear) enabling powerful rear-leg propulsion</li>
+                    <li>Calf joint mechanical stops (-156° to -48°) preventing hyperextension</li>
+                    <li>Hip joint symmetry (±48°) ensuring stable lateral weight shifting</li>
+                </ul>
+                <img src="go2 joint.png" alt="Description" style="max-width:100%; height:auto; display:block; margin:1rem auto; border-radius:4px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+
+            </section>
+            <section id="software">
+                <h2>Software Stack</h2>
+                <ul>
+                    <li><strong>Pre-installed OS:</strong> Linux-based</li>
+                    <li><strong>SDK/API availability:</strong> Python, ROS2, C++</li>
+                    <li><strong>Simulation tools:</strong> Gazebo, Webots integration</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 Bidyut innovation. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>

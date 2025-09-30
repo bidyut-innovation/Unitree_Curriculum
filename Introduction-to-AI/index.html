@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Foundations and Robotics Integration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+        <h1>Learning Robotics From Ground Up</h1>
+        <p class="subtitle">Let's Innovate</p>
+        <img src="Certificate.png" alt="Bidyut Logo" 
+        style="position: absolute; right: 20px; top: -55px; height: 250px; width: 200px; object-fit: fill;">
+    </header>
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <h3>AI in Robotics</h3>
+            <ul>
+                <li><a href="#ai-intro" class="active">What is AI?</a></li>
+                <li><a href="#ai-history">History of AI</a></li>
+                <li><a href="#ai-components">Core AI Components</a></li>
+                <li><a href="#ai-robotics">AI in Robotics</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="sidebar-toggle"></div>
+
+    <div class="container">
+        <main>
+            <section id="ai-intro">
+                <h2>1. What is Artificial Intelligence?</h2>
+                <p>Let's start with the big question: What even is Artificial Intelligence?</p>
+                <p>Is it a robot uprising waiting to happen? Is it your phone listening to you? Or is it just that annoying autocorrect that thinks "ducking" is what you meant? Well, none of that—and all of it.</p>
+                <p>Artificial Intelligence, or AI, is the field dedicated to making machines... smart. But not just "add two plus two" smart. We're talking perceive-the-world, understand-language, learn-from-experience, make-decisions-on-the-fly smart.</p>
+                <p>Unlike traditional software that runs on fixed, rule-based logic, AI systems evolve. They can adapt, make sense of ambiguity, recognize patterns in noise, and even reason under uncertainty. Basically, AI moves machines from "doing what they're told" to "figuring out what to do"—and that's a massive leap.</p>
+                <p>So when we say AI is the mind of the machine, we're not exaggerating. It's the difference between a hammer and a handyman. One just swings. The other thinks, adapts, and builds.</p>
+            </section>
+
+            <section id="ai-history">
+                <h2>2. A Brief History of AI – From Theory to Thinking Machines</h2>
+                <p>Let's rewind the tape a bit—because AI didn't just appear alongside iPhones and robot dogs.</p>
+                
+                <h3>1950s</h3>
+                <p>Alan Turing, the OG of computing, asks the iconic question: Can machines think? He proposes the Turing Test, essentially asking: if you talk to a machine and can't tell it apart from a human, is it intelligent? This sparks the first real exploration into AI.</p>
+                
+                <h3>1956</h3>
+                <p>The Dartmouth Conference is where AI is officially born as a field. The bold idea? Let's try to replicate human intelligence in a machine. No big deal.</p>
+                
+                <h3>1960s–1980s</h3>
+                <p>This was the age of "Good Old-Fashioned AI," or GOFAI. Think rule-based systems and symbolic logic—great at solving math problems, but not so great at recognizing a cat or walking across a room without tripping.</p>
+                
+                <h3>1990s</h3>
+                <p>The tide shifts toward data. Enter machine learning. Now, instead of hardcoding rules, we let machines learn from examples. Algorithms like support vector machines and Bayesian inference models start showing promise.</p>
+                
+                <h3>1997</h3>
+                <p>IBM's Deep Blue defeats world chess champion Garry Kasparov. Symbolic AI hits a high note—and everyone's suddenly watching.</p>
+                
+                <h3>2010s</h3>
+                <p>Deep learning explodes. Neural networks, once considered quirky and inefficient, become superstars. With more data and bigger GPUs, models start crushing it in image recognition, language translation, and speech.</p>
+                
+                <h3>2016</h3>
+                <p>AlphaGo, from DeepMind, beats Go world champion Lee Sedol. This wasn't just a game win—it was a milestone in strategic reasoning and planning under uncertainty.</p>
+                
+                <h3>2020s</h3>
+                <p>Welcome to the age of foundation models. We're talking GPT-3, GPT-4, and other mega-models that can write, draw, talk, reason—and even help robots plan actions in the real world. They don't just learn one task—they generalize. That's huge.</p>
+                
+                <p>So in short, we've gone from "if-then" logic to "think, learn, act" pipelines. The game has changed—and it's changing robotics with it.</p>
+            </section>
+
+            <section id="ai-components">
+                <h2>3. Core Components of Modern Artificial Intelligence</h2>
+                <p>Now, let's open the AI toolbox. What exactly makes up the intelligent core of these machines? We're talking about a well-structured, interdependent system of subsystems. Each with its job. Together, they make robots... well, not dumb.</p>
+                
+                <h3>3.1 Machine Learning (ML)</h3>
+                <p>ML is the powerhouse of AI. It's how machines extract patterns, make predictions, and optimize behavior—without being spoon-fed every rule. Let's unpack the major types:</p>
+                
+                <h4> Supervised Learning</h4>
+                <p>You give it inputs and correct answers (a.k.a. labels), and it learns to predict them.</p>
+                <p>In Robotics? Object detection, pose estimation, even predicting successful grasps.</p>
+                
+                <h4>Unsupervised Learning</h4>
+                <p>There are no labels here. The system discovers structure on its own.</p>
+                <p>In Robotics? Clustering unknown environments or compressing sensor data for efficient processing.</p>
+                
+                <h4>Reinforcement Learning (RL)</h4>
+                <p>The robot gets rewards or penalties. Like training a puppy—but with math.</p>
+                <p>Use case? Teaching a robot to walk, balance, or juggle.</p>
+                
+                <h4>Self-Supervised Learning</h4>
+                <p>Now this is clever. The data supervises itself.</p>
+                <p>Example? Predicting missing video frames, or learning the effects of actions without labels.</p>
+                
+                <h4>Imitation Learning</h4>
+                <p>Just copy the expert. Humans do it. So do robots.</p>
+                <p>Think: Surgical robots learning from doctors or cooking robots watching chefs.</p>
+                
+                <h3>3.2 Perception</h3>
+                <p>Perception is how robots see, feel, and hear. But perception without intelligence is like a camera without a photographer. So AI steps in.</p>
+                
+                <h4>Visual Perception</h4>
+                <p>From object detection to semantic segmentation. Robots learn to understand scenes the way humans do—just a bit more mathematically.</p>
+                
+                <h4>Tactile and Force Sensing</h4>
+                <p>Feeling textures, adjusting grip force, detecting slips—all through sensors and smart models.</p>
+                
+                <h4>Auditory & Proprioceptive Sensing</h4>
+                <p>Yes, robots can hear. Even better? They can listen for specific cues—like a motor failure or your voice saying "stop!"</p>
+                
+                <h4>Sensor Fusion</h4>
+                <p>Robots don't rely on a single sense. AI blends vision, touch, proprioception into one coherent world model. Much better than relying on just one shaky signal.</p>
+                
+                <h3>3.3 Decision-Making and Planning</h3>
+                <p>Once the robot knows what's happening, it has to decide what to do. Welcome to the world of action.</p>
+                
+                <h4>Motion Planning</h4>
+                <p>Traditional methods (A*, RRT) create safe paths. AI-enhanced planners predict which paths are efficient or likely to succeed.</p>
+                
+                <h4>Task Planning</h4>
+                <p>Think higher-level logic: "Get the cup, place it on the table." AI blends symbolic reasoning with learned strategies.</p>
+                
+                <h4>Probabilistic Reasoning</h4>
+                <p>The real world is messy. Bayesian models help robots handle uncertainty: "Where am I?" "Is that a wall or a shadow?"</p>
+                
+                <h4>Model Predictive Control (MPC)</h4>
+                <p>This is real-time decision-making with future planning. AI models predict how the system will behave—and MPC finds the best course of action in real time.</p>
+                
+                <h3>3.4 Natural Language Processing (NLP)</h3>
+                <p>Talking to robots isn't science fiction anymore. NLP is how we make robots understand us.</p>
+                
+                <h4>Instruction Understanding</h4>
+                <p>"Go to the kitchen." Seems simple? Not to a robot. NLP turns that into an actionable goal.</p>
+                
+                <h4>Dialogue and Interaction</h4>
+                <p>Modern robots don't just execute—they converse. Think interactive, memory-aware conversation where your robot remembers your preferences.</p>
+                
+                <h4>Multimodal Grounding</h4>
+                <p>"Pick the red apple." NLP + vision = understanding which apple you're talking about. Context is everything.</p>
+                
+                <h3>3.5 Knowledge Representation and Reasoning</h3>
+                <p>A robot needs knowledge—and not just sensory input, but structured, logical, abstract knowledge.</p>
+                
+                <h4>Ontologies</h4>
+                <p>Think of them like knowledge trees. What objects are, how they relate.</p>
+                <p>Use case? Knowing that a mug has a handle, or that plates go on tables.</p>
+                
+                <h4>Logic-Based Reasoning</h4>
+                <p>Planning, verifying, and validating actions—mathematically.</p>
+                
+                <h4>Probabilistic Models</h4>
+                <p>When the world is fuzzy, AI uses probability to make the best guess.</p>
+                
+                <h4>Neural-Symbolic Systems</h4>
+                <p>The best of both worlds: neural networks for perception, symbolic logic for reasoning.</p>
+            </section>
+
+            <section id="ai-robotics">
+                <h2>4. AI in Robotics: Hidden Brains, Visible Actions</h2>
+                <p>Let's be clear: when AI meets robotics, something magical happens. Robots stop being dumb mechanical workers and start becoming collaborators. Think of AI as the hidden brain—the silent genius behind every clever movement.</p>
+                
+                <h3>4.1 From Automation to Intelligence</h3>
+                <p>Old-school robots followed scripts—precise but rigid. One unexpected change in the environment, and boom—they freeze. AI changes that:</p>
+                <ul>
+                    <li>Robots now navigate unpredictable environments.</li>
+                    <li>They learn from the world.</li>
+                    <li>They make decisions in context.</li>
+                    <li>They improve with experience.</li>
+                </ul>
+                <p>That's not just automation. That's intelligence.</p>
+                
+                <h3>4.2 Scene Understanding and Perception</h3>
+                <p>AI enables scene comprehension—not just raw data.</p>
+                <ul>
+                    <li>Object detectors like YOLO and DETR find things in real time.</li>
+                    <li>Semantic segmentation breaks the world into understandable chunks—walls, tables, people.</li>
+                    <li>Deep visual SLAM helps robots map spaces, localize themselves, and move intelligently.</li>
+                </ul>
+                
+                <h3>4.3 Learning for Control</h3>
+                <p>Why hand-code every movement when the robot can learn how to move?</p>
+                <ul>
+                    <li>Deep RL enables robots to master balancing, walking, and more—just through experience.</li>
+                    <li>Inverse RL helps extract goals from human behavior.</li>
+                    <li>Imitation learning bridges the gap from demo to execution.</li>
+                </ul>
+                
+                <h3>4.4 AI-Driven Planning</h3>
+                <p>Now imagine planning in a world full of uncertainty. You can't rely on static maps or rigid paths.</p>
+                <ul>
+                    <li>Probabilistic planners account for noise.</li>
+                    <li>Neural planners can go from raw perception to action.</li>
+                    <li>Task and motion planning (TAMP) connects high-level goals to low-level physics.</li>
+                </ul>
+                
+                <h3>4.5 Natural Human-Robot Interaction</h3>
+                <p>Finally, let's talk people. Robots today are entering homes, hospitals, factories. They must understand us.</p>
+                <ul>
+                    <li>LLMs like GPT allow for natural, conversational instructions.</li>
+                    <li>Contextual understanding grounds language in physical actions.</li>
+                    <li>Emotional intelligence and ethics? Slowly entering the picture.</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 Bidyut innovation. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>

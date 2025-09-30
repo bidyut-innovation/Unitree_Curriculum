@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering ROS2: TF2 and URDF</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+        <h1>Learning Robotics From Ground Up</h1>
+        <p class="subtitle">Let's Innovate</p>
+        <img src="Certificate.png" alt="Bidyut Logo" 
+        style="position: absolute; right: 20px; top: -55px; height: 250px; width: 200px; object-fit: fill;">
+    </header>
+
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <h3>TF2 and URDF</h3>
+            <ul>
+                <li><a href="#tf2-intro" class="active">What is TF2?</a></li>
+                <li><a href="#tf2-concepts">TF2 Key Concepts</a></li>
+                <li><a href="#tf2-demo">TF2 Demo</a></li>
+                <li><a href="#tf2-tools">TF2 Tools</a></li>
+                <li><a href="#urdf-intro">URDF Introduction</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="sidebar-toggle"></div>
+
+    <div class="container">
+        <main>
+            <section id="tf2-intro">
+                <h2>What is TF2 (Transform Library)?</h2>
+                <p>TF2 is a ROS 2 library that keeps track of coordinate frames over time.</p>
+                <p>In a robot, different parts (like the base, sensors, arms, etc.) operate in their own coordinate systems. TF2 helps to:</p>
+                <ul>
+                    <li>Maintain spatial relationships between all these coordinate frames</li>
+                    <li>Transform data from one frame to another accurately</li>
+                    <li>Synchronize transformations with sensor data using timestamps</li>
+                </ul>
+
+                <h3>Why is TF2 Important in Robotics?</h3>
+                <p>Imagine a camera sees an object and gives its location in the <code>camera_frame</code>. But the robot's movement system operates in the <code>base_link</code> frame. To act on the object, the robot needs to convert the object's coordinates from <code>camera_frame</code> to <code>base_link</code>.</p>
+                <p>TF2 makes this possible.</p>
+            </section>
+
+            <section id="tf2-concepts">
+                <h2>Key TF2 Concepts</h2>
+                
+                <h3>Coordinate Frame</h3>
+                <p>A reference point with an x, y, z axis (3D space).</p>
+                <p>Examples: <code>base_link</code>, <code>odom</code>, <code>map</code>, <code>camera_link</code>, <code>laser_frame</code>.</p>
+                
+                <h3>Timestamped Transforms</h3>
+                <p>TF2 doesn't just tell you where things are, but where they were at a specific time.</p>
+                <p>Crucial for syncing with sensor data like LiDAR and camera streams.</p>
+                
+                <h3>Frame Tree (tf tree)</h3>
+                <p>All transforms are connected in a tree structure.</p>
+                <p>Every transform is a child of another frame, forming a hierarchy.</p>
+            </section>
+
+            <section id="tf2-demo">
+                <h2>TF2 Demo with Turtlesim</h2>
+                
+                <h3>1. Installing the Demo</h3>
+                <p>Goal: Run a turtlesim demo and see some of the power of tf2 in a multi-robot example using turtlesim.</p>
+                <pre><code>sudo apt-get install ros-humble-rviz2 ros-humble-turtle-tf2-py ros-humble-tf2-ros ros-humble-tf2-tools</code></pre>
+
+                <h3>2. Running the Demo</h3>
+                <h4>Step 1: Launch the Demo</h4>
+                <p>In Terminal 1:</p>
+                <pre><code>ros2 launch turtle_tf2_py turtle_tf2_demo.launch.py</code></pre>
+                <p>This creates:</p>
+                <ul>
+                    <li>Two turtles in Turtlesim</li>
+                    <li>The TF2 broadcaster for each turtle</li>
+                    <li>The TF2 listener to make the second turtle follow the first</li>
+                </ul>
+
+                <h4>Step 2: Drive the First Turtle</h4>
+                <p>In Terminal 2:</p>
+                <pre><code>ros2 run turtlesim turtle_teleop_key</code></pre>
+                <p>Use the arrow keys to move the first turtle (turtle1). The second turtle (turtle2) will automatically follow.</p>
+
+                <h3>What's Happening Under the Hood?</h3>
+                <p>In this TF2 demo, you're seeing real-time coordinate frame management, which is essential for any robot to operate in physical space.</p>
+                
+                <h4>TF2 Coordinate Frames</h4>
+                <p>The system uses three main frames to represent spatial positions:
+                </p>
+                <ol class="frame-list">
+
+                <li> <h4>world frame</h4>
+                    <ul>
+                        <li>A fixed frame that represents the ground or global reference</li>
+                        <li>All other frames are defined relative to this one</li>
+                        <li>In our case, it's the Turtlesim screen background</li>
+                    </ul>
+                </li>
+                
+                <li><h4>turtle1 frame</h4>
+                    <ul>
+                        <li>Attached to the first turtle, which you control using your keyboard</li>
+                        <li>As turtle1 moves, this frame updates its position and orientation relative to the world</li>
+                    </ul>
+                </li>
+                
+                <li><h4>turtle2 frame</h4>
+                    <ul>
+                        <li>Attached to the second turtle, which automatically follows turtle1</li>
+                        <li>Its position and orientation are also updated relative to the world</li>
+                    </ul>
+                </li>
+            </ol>
+                <p>These frames form a transform tree:</p>
+                <pre>world
+├── turtle1
+└── turtle2</pre>
+<p>TF2 continuously tracks the relationship between these frames over time.
+</p>
+
+                <h4>TF2 Broadcaster</h4>
+                <p>Each turtle has a TF2 broadcaster node that:</p>
+                <ul>
+                    <li>Publishes its position and orientation to the world frame</li>
+                    <li>Broadcasts continuously at a set frequency</li>
+                </ul>
+
+                <h4>TF2 Listener</h4>
+                <p>Another node acts as a TF2 listener that:</p>
+                <ul>
+                    <li>Listens to transforms from both turtles</li>
+                    <li>Calculates relative transform from turtle2 to turtle1</li>
+                    <li>Makes turtle2 follow turtle1</li>
+                </ul>
+
+               
+            </section>
+
+            <section id="tf2-tools">
+                <h2>TF2 Tools</h2>
+                <p>TF2 comes with powerful command-line tools for debugging and visualization.</p>
+                
+                <h3>1. view_frames</h3>
+                <p>Generates a graphical visualization of all coordinate frames.</p>
+                <pre><code>ros2 run tf2_tools view_frames</code></pre>
+                <p>Output: Generates <code>frames.pdf</code> showing the TF tree structure.</p>
+                
+                <h3>2. tf2_echo</h3>
+                <p>Shows the transformation between two frames in real-time.</p>
+                <pre><code>ros2 run tf2_ros tf2_echo [source_frame] [target_frame]</code></pre>
+                <p>Example:</p>
+                <pre><code>ros2 run tf2_ros tf2_echo turtle2 turtle1</code></pre>
+                <p>Sample output:</p>
+                <pre>At time 1622031731.625364060
+- Translation: [2.796, 1.039, 0.000]
+- Rotation: in Quaternion [0.000, 0.000, 0.202, 0.979]</pre>
+            </section>
+
+            <section id="urdf-intro">
+                <h2>Introduction to URDF</h2>
+                <p>URDF (Unified Robot Description Format) is an XML-based format used in ROS 2 to describe robot structure, appearance, and functionality.</p>
+                
+                <p>URDF acts as the digital blueprint that defines:</p>
+                <ul>
+                    <li>What parts your robot is made of (links)</li>
+                    <li>How those parts are connected and move (joints)</li>
+                    <li>Where sensors are placed</li>
+                    <li>How the robot looks in 3D tools like RViz</li>
+                </ul>
+            </section>
+
+            <section id="urdf-importance">
+                <h2>Why is URDF Important?</h2>
+                <p>URDF enables multiple ROS components to understand the robot's physical configuration.</p>
+                
+                <p>URDF allows us to:</p>
+                <ul>
+                    <li>Define the robot's physical structure</li>
+                    <li>Describe movement through joint types and limits</li>
+                    <li>Integrate sensors by defining their locations</li>
+                    <li>Visualize the robot in RViz</li>
+                    <li>Simulate interactions in Gazebo</li>
+                </ul>
+                
+                <div class="note">
+                    <p>Without URDF, ROS wouldn't know what kind of robot it's working with. It's like trying to drive a car blindfolded—you wouldn't know where the wheels are or how they turn.</p>
+                </div>
+            </section> <div class="note">
+        <div class="note-title">Official ROS 2 URDF Tutorial</div>
+        <p>For a complete step-by-step guide to building URDF models, see:</p>
+        <a href="https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Building-a-Visual-Robot-Model-with-URDF-from-Scratch.html" target="_blank">
+            Building a Visual Robot Model with URDF from Scratch
+        </a>
+    </div>
+        </main>
+
+        <footer>
+            <p>© 2025 Bidyut innovation. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>

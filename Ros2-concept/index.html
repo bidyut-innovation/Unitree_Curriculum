@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering ROS2 CLI Commands</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+        <h1>Learning Robotics From Ground Up</h1>
+        <p class="subtitle">Let's Innovate</p>
+        <img src="Certificate.png" alt="Bidyut Logo" 
+        style="position: absolute; right: 20px; top: -55px; height: 250px; width: 200px; object-fit: fill;">
+    </header>
+
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <h3>ROS2 Concepts</h3>
+            <ul>
+                <li><a href="#core-commands">Command Line</a></li>
+                <li><a href="#turtlesim" class="active">Turtlesim</a></li>
+                <li><a href="#nodes">Nodes</a></li>
+                <li><a href="#topics">Topics</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#actions">Actions</a></li>
+                <li><a href="#parameters">Parameters</a></li>
+                <li><a href="#daemon">Daemon</a></li>
+                <li><a href="#doctor">Doctor</a></li>
+                <li><a href="#interface">Interface</a></li>
+                <li><a href="#component">Component</a></li>
+                <li><a href="#launch">Launch</a></li>
+                <li><a href="#colcon">Colcon</a></li>
+                <li><a href="#rqt">RQT</a></li>
+                <li><a href="#ros2-control">Control</a></li>
+                <li><a href="#client-libs">Client Libraries</a></li>
+                <li><a href="#filesystem">File System</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="sidebar-toggle"></div>
+
+    <div class="container">
+        <main>
+            <section id="core-commands">
+                <h2>ROS 2 Command Line</h2>
+                <p>In ROS 2, the command line isn't just a tool — it's a control panel for your robotic universe. Whether you're managing nodes, inspecting topics, tuning parameters, or debugging, the CLI is where theory meets hands-on execution.</p>
+                
+                <h3>Meet Your Entry Point: ros2</h3>
+                <p>The ros2 command is your gateway to interacting with the ROS 2 framework. It's clean, modular, and remarkably powerful — giving you direct access to your system without writing a single line of code.</p>
+                
+                <h4>Syntax Decoded:</h4>
+                <pre><code>ros2 [command] [verb] &lt;arguments&gt;</code></pre>
+                <ul>
+                    <li><strong>ros2:</strong> The core command that boots up the CLI</li>
+                    <li><strong>[command]:</strong> The domain — such as node, topic, or service</li>
+                    <li><strong>[verb]:</strong> The operation — like list, info, call</li>
+                    <li><strong>&lt;arguments&gt;:</strong> Optional flags or data that shape the behavior</li>
+                </ul>
+            </section>
+            <section id="turtlesim">
+                <h2>Turtlesim</h2>
+                <p>Turtlesim is a lightweight 2D simulator that simulates a turtle moving around on the screen. Think of it as a digital pet turtle you can control using ROS 2 commands. It might seem like a toy, but it helps you understand topics, services, and actions — the core communication mechanisms in ROS 2.</p>
+                <p>It's like the "Hello, World!" of ROS.</p>
+                
+                <h3>Why Use Turtlesim?</h3>
+                <ul>
+                    <li>Easy to start with — no need for complex hardware</li>
+                    <li>Visual and interactive — you can see the effects of your code immediately</li>
+                </ul>
+
+                <h3>Concepts You'll Practice</h3>
+                <ul>
+                    <li>ROS 2 nodes and how they run</li>
+                    <li>ROS 2 topics — like a radio channel for data</li>
+                    <li>ROS 2 services — like a question/answer system</li>
+                    <li>ROS 2 packages and how to structure your own</li>
+                </ul>
+
+                <h3>Install Turtlesim Package</h3>
+                <pre><code>sudo apt update
+sudo apt install ros-humble-turtlesim</code></pre>
+
+                <h3>ROS2 bag command with Turtlesim</h3>
+                <p>ros2 bag lets you record and replay ROS 2 topic data. With turtlesim, this means you can save a turtle's movement and play it back exactly as it happened — great for testing or demos.</p>
+                
+                <h4>1. Record Turtlesim Movements</h4>
+                <p>First, launch turtlesim and start controlling the turtle:</p>
+                <pre><code>ros2 run turtlesim turtlesim_node
+ros2 run turtlesim turtle_teleop_key</code></pre>
+                <p>Then, record the movement commands:</p>
+                <pre><code>ros2 bag record -o turtle_bag /turtle1/cmd_vel</code></pre>
+                <p>This saves the velocity commands (from your keyboard) into a bag file called turtle_bag.</p>
+
+                <h4>2. Replay the Recorded Movements</h4>
+                <p>To replay the saved motion:</p>
+                <pre><code>ros2 bag play turtle_bag</code></pre>
+                <p>The turtle will move on its own, repeating the path from your recording — no need to control it manually again.</p>
+            </section>
+
+          
+
+            <section id="nodes">
+                <h2>ROS 2 Nodes - Basic Commands</h2>
+                <p>A node in ROS 2 is the smallest unit of a distributed computing system. Each node is responsible for a specific task, such as controlling a robot component, processing sensor data, or facilitating communication.</p>
+                <img src="node.jpg" alt="Turtlesim Example" style="max-width:100%; height:400px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+                <h3>Running a ROS 2 Node</h3>
+                <pre><code>ros2 run &lt;package_name&gt; &lt;executable_name&gt;</code></pre>
+                <p> This command runs a node executable from a given ROS 2 package.</p>
+                
+                <h3>Listing Active Nodes</h3>
+                <pre><code>ros2 node list</code></pre>
+                <p> Displays all currently running nodes in the ROS 2 system.</p>
+                
+                <h3>Getting Information About a Node</h3>
+                <pre><code>ros2 node info /&lt;node_name&gt;</code></pre>
+                <p> Retrieves detailed information about a node, including the topics it publishes or subscribes to, services it provides, and actions it handles.</p>
+            </section>
+
+            <section id="topics">
+                <h2>ROS 2 Topics - Basic Commands</h2>
+                <h3>Topic-Based Communication</h3>
+                <p>This is ROS 2's version of public radio. You have publishers (those doing the talking) and subscribers (those listening in). It's asynchronous—no one's waiting around for a reply, which means everyone stays productive and slightly anti-social.</p>
+                
+                <h4>Why Topics Work:</h4>
+                <ul>
+                    <li>Supports one-to-many and many-to-many data sharing</li>
+                    <li>Great for real-time data like sensor streams</li>
+                    <li>Uses Quality of Service (QoS) to balance reliability and speed</li>
+                </ul>
+                
+                <h4>When to Use Topics:</h4>
+                <ul>
+                    <li>Streaming IMU or LiDAR data</li>
+                    <li>Broadcasting robot health (because someone has to care)</li>
+                    <li>Publishing environment updates for autonomous navigation</li>
+                </ul>
+                <p>Think of topics as live updates. If your robot's camera sees something new every second, you don't want to send a formal letter—you want a megaphone.</p>
+                <img src="topic.jpg" alt="Turtlesim Example" style="max-width:100%; height:400px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+
+                <h3>Listing Available Topics</h3>
+                <pre><code>ros2 topic list</code></pre>
+                <p>Displays all currently active topics in the ROS 2 system.</p>
+                
+                <h3>Displaying Messages Published on a Topic</h3>
+                <pre><code>ros2 topic echo /&lt;topic_name&gt;</code></pre>
+                <p> Continuously outputs messages being published to a specified topic.</p>
+                
+                <h3>Retrieving Topic Information</h3>
+                <pre><code>ros2 topic info /&lt;topic_name&gt;</code></pre>
+                <p> Displays metadata about a topic, such as message type and publisher/subscriber counts.</p>
+                
+                <h3>Inspecting the Message Type of a Topic</h3>
+                <pre><code>ros2 interface show &lt;message_type&gt;</code></pre>
+                <p> Displays the structure of a message type used in communication.</p>
+                
+                <h3>Publishing a Message to a Topic</h3>
+                <pre><code>ros2 topic pub /&lt;topic_name&gt; &lt;message_type&gt; "{data}"</code></pre>
+                <p>Manually publishes a message to a topic, useful for testing.</p>
+                
+                <h3>Checking the Publishing Rate of a Topic</h3>
+                <pre><code>ros2 topic hz /&lt;topic_name&gt;</code></pre>
+                <p> Displays the frequency at which messages are being published to a topic.</p>
+            </section>
+
+            <section id="services">
+                <h2>ROS 2 Services - Basic Commands</h2>
+                <h3>Service-Based Communication</h3>
+                <p>This is your polite, structured conversation model. One node asks for something, and the other responds. Services are synchronous, meaning the client waits for the server to answer. Very civilized.</p>
+                
+                <h4>Why Use Services:</h4>
+                <ul>
+                    <li>Clean request-response interactions</li>
+                    <li>Predictable outcomes—perfect for decision-making logic</li>
+                    <li>Supports multiple clients asking the same server for help</li>
+                </ul>
+                
+                <h4>When Services Make Sense:</h4>
+                <ul>
+                    <li>Asking a robot for its current location</li>
+                    <li>Requesting a diagnostic checkup</li>
+                    <li>Telling a node to reset its internal state (because it's being dramatic again)</li>
+                </ul>
+                <p>Services are best when you need clarity, closure, and no room for miscommunication.</p>
+                <img src="service.jpg" alt="Turtlesim Example" style="max-width:100%; height:400px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+
+                <h3>Listing Available Services</h3>
+                <pre><code>ros2 service list</code></pre>
+                <p> Lists all active services currently available in the system.</p>
+                
+                <h3>Retrieving the Type of a Service</h3>
+                <pre><code>ros2 service type /&lt;service_name&gt;</code></pre>
+                <p> Displays the type of message structure used by a service.</p>
+                
+                <h3>Calling a Service</h3>
+                <pre><code>ros2 service call /&lt;service_name&gt; &lt;service_type&gt; "{request_parameters}"</code></pre>
+                <p> Sends a request to a service and waits for a response.</p>
+                <p><strong>Example:</strong></p>
+                <pre><code>ros2 service call /spawn turtlesim/srv/Spawn "{x: 5.5, y: 5.5, theta: 1.57, name: 'turtle2'}"</code></pre>
+                <p><strong>Effect:</strong> Spawns a new turtle at the specified position.</p>
+            </section>
+
+            <section id="actions">
+                <h2>ROS 2 Actions - Basic Commands</h2>
+                <h3>Action-Based Communication</h3>
+                <p>Some tasks take time. You can't just send a command and expect magic. That's where actions come in. They let you send a goal, receive feedback, and eventually get a result. It's the long-distance relationship of ROS 2 communication.</p>
+                
+                <h4>Why Actions Are Awesome:</h4>
+                <ul>
+                    <li>Supports long-running tasks with feedback</li>
+                    <li>Clients can cancel or modify goals on the fly</li>
+                    <li>Keeps the client informed with periodic updates</li>
+                </ul>
+                
+                <h4>Perfect For:</h4>
+                <ul>
+                    <li>Moving a robotic arm through a complex sequence</li>
+                    <li>Having a mobile robot follow a planned route</li>
+                    <li>Running SLAM</li>
+                </ul>
+                <p>Actions give you the best of both worlds—structure like services, with the flexibility of topics.</p>
+                <img src="action.jpg" alt="Turtlesim Example" style="max-width:100%; height:400px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+
+                <h3>Listing All Available Actions</h3>
+                <pre><code>ros2 action list</code></pre>
+                <p> Lists all active action servers.</p>
+                
+                <h3>Sending a Goal to an Action Server</h3>
+                <pre><code>ros2 action send_goal /&lt;action_name&gt; &lt;action_type&gt; "{goal_parameters}"</code></pre>
+                <p> Sends a goal request to an action server, initiating a task.</p>
+                <p><strong>Effect:</strong> Instructs the robot to navigate to a specified pose.</p>
+            </section>
+
+            <section id="parameters">
+                <h2>ROS 2 Parameters - Basic Commands</h2>
+                <p>Parameters allow nodes to be configured dynamically without changing the source code.</p>
+                
+                <h3>Listing All Parameters of a Node</h3>
+                <pre><code>ros2 param list /&lt;node_name&gt;</code></pre>
+                <p> Lists all parameters associated with the specified node.</p>
+                
+                <h3>Getting the Value of a Parameter</h3>
+                <pre><code>ros2 param get /&lt;node_name&gt; &lt;parameter_name&gt;</code></pre>
+                <p> Retrieves the current value of a parameter.</p>
+                
+                <h3>Setting a Parameter Value</h3>
+                <pre><code>ros2 param set /&lt;node_name&gt; &lt;parameter_name&gt; &lt;value&gt;</code></pre>
+                <p> Sets a new value for a parameter on a running node.</p>
+                <p><strong>Effect:</strong> Changes the red background color to maximum.</p>
+                
+                <h3>Dumping Parameters to a File</h3>
+                <pre><code>ros2 param dump /&lt;node_name&gt; --output-dir &lt;directory_path&gt;</code></pre>
+                <p> Saves current parameters to a YAML file for future use.</p>
+                
+                <h3>Loading Parameters from a File</h3>
+                <pre><code>ros2 param load /&lt;node_name&gt; &lt;file_path&gt;</code></pre>
+                <p> Loads parameters from a YAML file into a running node.</p>
+                <p><strong>Effect:</strong> Applies saved configuration settings to the node.</p>
+            </section>
+
+            <section id="daemon">
+                <h2>ROS 2 Daemon Command</h2>
+                <p>ros2 daemon refers to a background system service that is responsible for managing node discovery and updating the ROS 2 computation graph. This daemon ensures that the ros2 CLI commands (like ros2 node list, ros2 topic list) can accurately reflect the current state of the ROS 2 system.</p>
+                <p>In simpler terms, it keeps track of which nodes, topics, services, and actions exist in the system at any given time.</p>
+                
+                <h3>ros2 daemon start</h3>
+                <pre><code>ros2 daemon start</code></pre>
+                <p>Starts the ROS 2 daemon if it's not already running.</p>
+                
+                <h3>ros2 daemon stop</h3>
+                <pre><code>ros2 daemon stop</code></pre>
+                <p>To stop the daemon manually. Normally, this is not required during regular usage but can be useful when troubleshooting or resetting the ROS graph state.</p>
+                
+                <h3>ros2 daemon status</h3>
+                <pre><code>ros2 daemon status</code></pre>
+                <p>Checks the current status of the daemon—whether it is running or stopped.</p>
+            </section>
+
+            <section id="doctor">
+                <h2>ROS 2 Doctor Command</h2>
+                <p>ros2 doctor is a diagnostic command-line tool in ROS 2 used to check the health of a ROS 2 installation and its runtime environment. It is especially helpful for troubleshooting system issues, verifying correct setup, and identifying missing or misconfigured components.</p>
+                
+                <h3>ros2 doctor</h3>
+                <pre><code>ros2 doctor</code></pre>
+                <p>Runs a basic diagnostic check and outputs a summary of the system's ROS 2 setup and status.</p>
+                <p>This provides quick feedback on essential components such as:</p>
+                <ul>
+                    <li>Environment variables</li>
+                    <li>RMW (ROS Middleware) implementation</li>
+                    <li>DDS communication setup</li>
+                    <li>Python and ROS 2 package paths</li>
+                </ul>
+                
+                <h3>ros2 doctor --report</h3>
+                <pre><code>ros2 doctor --report</code></pre>
+                <p>Generates a detailed diagnostic report, including all checks and results in a readable format. Useful for deeper analysis or when preparing logs for sharing with instructors or debugging teams.</p>
+                
+                <h3>ros2 doctor --include-warnings</h3>
+                <pre><code>ros2 doctor --include-warnings</code></pre>
+                <p>Includes non-critical warnings in the diagnostic output. This is useful for identifying potential configuration improvements or early signs of misalignment in the setup.</p>
+            </section>
+
+            <section id="interface">
+                <h2>ROS 2 Interface Command</h2>
+                <p>The ros2 interface command group provides tools to view and explore definitions of ROS 2 messages, services, and actions. These definitions are the building blocks for communication between nodes in a ROS 2 system.</p>
+                
+                <h3>1. ros2 interface list</h3>
+                <pre><code>ros2 interface list</code></pre>
+                <p>Lists all message, service, and action types available in the current ROS 2 environment.</p>
+                
+                <h3>2. ros2 interface packages</h3>
+                <pre><code>ros2 interface packages</code></pre>
+                <p>Shows all packages that define interfaces (messages, services, or actions).</p>
+                
+                <h3>3. ros2 interface package</h3>
+                <pre><code>ros2 interface package &lt;package_name&gt;</code></pre>
+                <p>Lists all interfaces (msg/srv/action) provided by a specific package.</p>
+                
+                <h3>4. ros2 interface show</h3>
+                <pre><code>ros2 interface show &lt;interface_name&gt;</code></pre>
+                <p>Displays the contents of a specific interface, showing its fields, types, and structure.</p>
+            </section>
+
+            <section id="component">
+                <h2>ROS 2 Component Command</h2>
+                <p>ros2 component is a command-line interface in ROS 2 used to work with composable nodes. These are modular software components that can be dynamically loaded into a container node at runtime, instead of being launched as separate processes. This supports better resource efficiency and faster inter-node communication through shared memory.</p>
+                <p>Composable nodes are especially useful in systems where performance, modularity, or dynamic loading/unloading is required.</p>
+                
+                <h3>ros2 component list</h3>
+                <pre><code>ros2 component list</code></pre>
+                <p>Displays all the currently loaded components in the active container nodes.</p>
+                
+                <h3>ros2 component types</h3>
+                <pre><code>ros2 component types</code></pre>
+                <p>Shows all available component types on the system. These types are the loadable plugins registered by different ROS 2 packages.</p>
+                <p>This is useful when you want to know what components are available to be loaded dynamically.</p>
+                
+                <h3>ros2 component load</h3>
+                <pre><code>ros2 component load &lt;container&gt; &lt;package_name&gt; &lt;plugin_name&gt;</code></pre>
+                <p>Loads a component into a specified container node.</p>
+                
+                <h3>ros2 component standalone</h3>
+                <pre><code>ros2 component standalone &lt;package_name&gt; &lt;plugin_name&gt;</code></pre>
+                <p>Runs a component in its own process (outside of a container). This is primarily for testing or debugging a single component.</p>
+                
+                <h3>ros2 component unload</h3>
+                <pre><code>ros2 component unload &lt;container&gt; &lt;node_name&gt;</code></pre>
+                <p>Unloads a component that was previously loaded into a container node.</p>
+            </section>
+
+            <section id="launch">
+                <h2>ROS 2 Launch Command</h2>
+                <p>The ros2 launch command is used to launch multiple nodes and set parameters using a launch file. It is the primary tool for managing coordinated startup of a robotic system in ROS 2.</p>
+                
+                <h3>1. ros2 launch</h3>
+                <pre><code>ros2 launch &lt;package_name&gt; &lt;launch_file&gt;</code></pre>
+                <p>Launches the specified launch file from a given package. This is the most common way to start an application consisting of multiple nodes.</p>
+                
+                <h3>2. ros2 launch --show-arguments</h3>
+                <pre><code>ros2 launch &lt;package_name&gt; &lt;launch_file&gt; --show-arguments</code></pre>
+                <p>Displays the list of configurable arguments defined in the launch file, helping users understand what parameters can be set at runtime.</p>
+                
+                <h3>3. ros2 launch --print-description</h3>
+                <pre><code>ros2 launch &lt;package_name&gt; &lt;launch_file&gt; --print-description</code></pre>
+                <p>Prints the entire XML or Python launch file structure as interpreted by ROS 2. Useful for debugging or understanding what the launch file is doing internally.</p>
+            </section>
+
+            <section id="colcon">
+                <h2>Colcon Build Tools</h2>
+                <p>Colcon is the recommended command-line tool for building, testing, and managing packages in ROS 2 workspaces. It replaces catkin and ament tools from ROS 1 and earlier ROS 2 versions.</p>
+                
+                <h3>1. colcon build</h3>
+                <pre><code>colcon build</code></pre>
+                <p>Builds all packages in the current workspace.</p>
+                
+                <h3>2. colcon build --packages-select</h3>
+                <pre><code>colcon build --packages-select &lt;package_name&gt;</code></pre>
+                <p>Builds only the specified package.</p>
+                
+                <h3>3. colcon build --symlink-install</h3>
+                <pre><code>colcon build --symlink-install</code></pre>
+                <p>Builds using symbolic links to the source files instead of copying them—useful during development.</p>
+                
+                <h3>4. colcon test</h3>
+                <pre><code>colcon test</code></pre>
+                <p>Runs tests for all packages in the workspace.</p>
+                
+                <h3>5. colcon test-result</h3>
+                <pre><code>colcon test-result</code></pre>
+                <p>Displays test results after running colcon test.</p>
+                
+                <h3>6. colcon list</h3>
+                <pre><code>colcon list</code></pre>
+                <p>Lists all packages in the current workspace.</p>
+                
+                <h3>rosdep</h3>
+                <pre><code>rosdep install --from-paths src --ignore-src -r -y</code></pre>
+                <p>Automatically installs all dependencies required by the packages inside a ROS 2 workspace. It scans the package.xml files to determine the missing dependencies and installs them.</p>
+                
+                <h3>Installing Specific ROS 2 Packages</h3>
+                <p>Apart from installing workspace dependencies, individual ROS 2 packages can be installed from online repositories.</p>
+                <p>Installing a ROS 2 Package Using apt (Ubuntu-based Systems):</p>
+                <pre><code>sudo apt install ros-humble-&lt;package_name&gt;</code></pre>
+                <p>Installs all missing dependencies required by the packages in the src/ directory of the workspace.</p>
+            </section>
+
+            <section id="rqt">
+                <h2>RQT</h2>
+                <h3>What is rqt_graph?</h3>
+                <p>rqt_graph is a graphical tool in ROS 2 that lets you see how different nodes, topics, and message flows are connected in your robot system.</p>
+                <p>In Simple Terms: Imagine your robot's software is like a social network. Nodes are the people, and topics are the group chats. rqt_graph shows who is talking to whom and through which "channel" (topic).</p>
+                
+                <h3>Why Use rqt_graph?</h3>
+                <ul>
+                    <li>To visualize node communication in real-time</li>
+                    <li>To debug — see if data is flowing as expected</li>
+                    <li>To learn how ROS 2 components interact (especially in larger projects)</li>
+                </ul>
+                
+                <h3>Install rqt</h3>
+                <pre><code>sudo apt update
+sudo apt install '~nros-humble-rqt*'</code></pre>
+                <p>To run rqt:</p>
+                <pre><code>rqt</code></pre>
+                <p>When running rqt for the first time, the window will be blank. No worries; just select Plugins > Services > Service Caller from the menu bar at the top.</p>
+            </section>
+            <section id="ros2-control">
+                <h2>ROS 2 Control Command</h2>
+                <p>ros2 control is part of the ROS 2 Control framework. It provides a command-line interface for interfacing with robot hardware and managing controllers (such as joint controllers, velocity controllers, etc.).</p>
+                <p>This tool allows educators and students to load, activate, deactivate, and inspect controllers running on a robot or in simulation. It is central to managing hardware abstraction and enabling motion control in a modular and real-time friendly manner.</p>
+
+                <h3>ros2 control list_controller_types</h3>
+                <pre><code>ros2 control list_controller_types</code></pre>
+                <p> Lists all controller types available on the system that can be loaded.</p>
+                
+                <h3>ros2 control list_controllers</h3>
+                <pre><code>ros2 control list_controllers</code></pre>
+                <p>Shows the currently loaded controllers, along with their status:</p>
+                <ul>
+                    <li><strong>active</strong> - controller is loaded and running</li>
+                    <li><strong>inactive</strong> - controller is loaded but not running</li>
+                    <li><strong>unconfigured</strong> - controller is defined but not yet configured</li>
+                </ul>
+                
+                <h3>ros2 control list_hardware_interfaces</h3>
+                <pre><code>ros2 control list_hardware_interfaces</code></pre>
+                <p> Displays the hardware interfaces available for control. These typically include:</p>
+                <ul>
+                    <li>Command interfaces (e.g., position, velocity, effort)</li>
+                    <li>State interfaces (e.g., joint positions, velocities)</li>
+                </ul>
+                
+                
+            <section id="client-libs">
+                <h2>Client Libraries in ROS 2</h2>
+                <p>ROS 2 communicates in several programming languages via client libraries, allowing developers to pick the appropriate tool for the task.</p>
+                
+                <h3>Overview of Client Libraries</h3>
+                <p>Client libraries are your doorway to ROS 2 concepts such as nodes, topics, and services — in your preferred language. If you're rapid prototyping or optimizing for performance, there's a library available.</p>
+                
+                <h3>Core Client Libraries</h3>
+                <ul>
+                    <li><strong>rclcpp (C++):</strong> Designed for control and speed, best when performance truly matters</li>
+                    <li><strong>rclpy (Python):</strong> Fast, straightforward, and just right for scripting and rapid prototyping</li>
+                </ul>
+                
+                <h3>Community-Maintained Client Libraries</h3>
+                <p>In addition to the core libraries, the ROS 2 community provides more:</p>
+                <ul>
+                    <li><strong>Java:</strong> Android and JVM-based projects</li>
+                    <li><strong>C:</strong> Lightweight, perfect for use on resource-scarce systems</li>
+                    <li><strong>C#:</strong> Perfect for.NET and Windows development</li>
+                    <li><strong>Node.js:</strong> Just right for web and JavaScript developers</li>
+                    <li><strong>Rust:</strong> For developers who love concurrency and safety</li>
+                </ul>
+                <p>Note: ROS 2 does not merely program but follows your programming style.</p>
+            </section>
+
+            <section id="filesystem">
+                <h2>File System in ROS 2</h2>
+                <p>If ROS 2 is the brain of your robot, its file system is the nervous system — everything flows through here. Understanding it means you know where everything lives and how it all connects.</p>
+                
+                <h3>Workspaces</h3>
+                <p>A workspace is your robot's personal playground — a folder that holds all your packages. The gold-standard layout looks like this:</p>
+                <pre>ros2_ws/
+├── src/      # Your actual code lives here
+├── build/    # Temporary build files
+├── install/  # Final output (binaries, libs, etc.)
+└── log/      # Build and runtime logs</pre>
+                
+                <h3>Package Structure</h3>
+                <p>In ROS 2, packages are the basic building blocks — like Lego bricks for robots. A package can hold:</p>
+                <ul>
+                    <li>Nodes that do the actual work</li>
+                    <li>Libraries to share useful code</li>
+                    <li>Configs for fine-tuning behavior</li>
+                    <li>Interfaces (msg/srv) for communication</li>
+                    <li>Launch files to kick things off</li>
+                </ul>
+                
+                <p>A typical package looks like this:</p>
+                <pre>my_robot_package/
+├── package.xml       # Package metadata
+├── CMakeLists.txt    # Build instructions
+├── src/              # Source code (e.g., .cpp files)
+├── include/          # Header files
+├── launch/           # Launch scripts
+├── config/           # YAML config files
+├── msg/              # Custom messages
+└── srv/              # Custom services</pre>
+                
+                <h3>Getting Started</h3>
+                <pre><code>mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws
+colcon build
+source install/setup.bash</code></pre>
+                <p>That's it! Now your packages are active and ready for action.</p>
+                
+                <div class="note">
+                    <div class="note-title">Note</div>
+                    <p>Before doing anything ROS-y, make sure you source the setup file:</p>
+                    <pre><code>source /opt/ros/humble/setup.bash</code></pre>
+                </div>
+            </section>
+
+            <section id="additional-resources">
+                <h2>Additional Resources</h2>
+                <div class="note">
+                    <div class="note-title">Official ROS2 Tutorials</div>
+                    <p>For more detailed examples and explanations, check out these official ROS2 documentation pages:</p>
+                    <ul>
+                        <li>
+                            <a href="https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html" target="_blank">
+                                Writing a Simple Publisher and Subscriber (Python)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html" target="_blank">
+                                Writing a Simple Service and Client (Python)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Creating-Launch-Files.html" target="_blank">
+                                Creating Launch Files
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 Bidyut Innovation. All rights reserved.</p>
+        
+        </footer>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>

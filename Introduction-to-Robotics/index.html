@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Robotics From Ground Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Learning Robotics From Ground Up</h1>
+        <p class="subtitle">Let's Innovate</p>
+        <img src="Certificate.png" alt="Bidyut Logo" 
+        style="position: absolute; right: 20px; top: -55px; height: 250px; width: 200px; object-fit: fill;">
+    </header>
+
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <h3>Robotics Journey</h3>
+            <ul>
+                <li><a href="#origin" class="active">The Origin</a></li>
+                <li><a href="#definitions">What is a Robot?</a></li>
+                <li><a href="#history">Historical Timeline</a></li>
+                <li><a href="#anatomy">Robot Anatomy</a></li>
+                <li><a href="#ethics">Ethical Implications</a></li>
+                <li><a href="#future">Future Possibilities</a></li>
+                <li><a href="#benefits">Benefits Timeline</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+                <li><a href="#robot-zoo">Robot's Classification</a></li>
+
+            </ul>
+        </nav>
+    </div>
+
+    <div class="sidebar-toggle"></div>
+
+    <div class="container">
+        <main>
+            <section id="origin">
+                <h2>The Origin of Robotics: A Journey from Myth to Machine</h2>
+                <p>Robotics didn't begin in labs—it began in legends. The idea of creating life-like machines has fascinated humanity for thousands of years.</p>
+                
+                <div class="note">
+                    <p>"The term 'robot' was introduced in 1920 by Karel Čapek in his play R.U.R. (Rossum's Universal Robots)"</p>
+                </div>
+
+                <h3>Early Inspirations from Myth & Legend</h3>
+                <div class="columns">
+                    <div class="column">
+                        <h4>Greek Mythology</h4>
+                        <ul>
+                            <li>Hephaestus, god of craftsmanship, built mechanical servants</li>
+                            <li>First imagined "automatons" that assisted their creator</li>
+                        </ul><img src="images/talos.jpg" alt="Turtlesim Example" style="max-width:100%; height:250px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+
+                    </div>
+                    <div class="column">
+                        <h4>Chinese Legends</h4>
+                        <ul>
+                            <li>Yan Shi (10th century BCE) built a humanoid automaton</li>
+                            <li>It could move, sing, and impress the king</li>
+                        </ul>       <img src="images/yanshi.jpg" alt="Turtlesim Example" style="max-width:100%; height:276px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+        
+                    </div>
+                    <div class="column">
+                        <h4>Jewish Folklore</h4>
+                        <ul>
+                            <li>The Golem: A clay figure brought to life by mystical words</li>
+                            <li>Represented early ideas of creating artificial life</li>
+                        </ul><img src="images/golem.jpg" alt="Turtlesim Example" style="max-width:100%; height:250px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="definitions">
+                <h2>But... What Is a Robot?</h2>
+                <p>This is not a simple question. Experts define robots in various ways.</p>
+                
+                <h3>Definitions from Leading Institutions</h3>
+                <div class="note">
+                    <ul>
+                        <li><strong>Dr. S. S. Verma, Professor of Physics:</strong> "A robot means a mechanical device which performs all or more works for humans with maximum efficiency and low cost even in hostile environments under the command of the masters."</li>
+                        <li><strong>NASA:</strong> "A robot is an electromechanical system with sensors, local computing, and actuators, capable of intelligent tasks and real-world interaction."</li>
+                        <li><strong>Oxford University:</strong> "A robot is a machine, often humanoid, designed to perform tasks automatically."</li>
+                        <li><strong>MIT:</strong> "A robot is a physically embodied machine that can sense, compute, and act in the real world."</li>
+                        <li><strong>IEEE:</strong> "A robot is an agentive device intended to act in the physical world to achieve specific tasks."</li>
+                    </ul>
+                </div>
+
+                <h3>Unified View: What is a Robot?</h3>
+                <p>In simple terms, a robot is an autonomous or semi-autonomous machine that:</p>
+                <ol>
+                    <li>Exists in the physical world</li>
+                    <li>Uses sensors to perceive its environment</li>
+                    <li>Uses computation to process data</li>
+                    <li>Uses actuators to perform actions</li>
+                    <li>Is programmable, adaptable, and goal-directed</li>
+                </ol>
+            </section>
+
+            <section id="history">
+                <h2>The Rise of the Machines: From Automata to Autonomous Robots</h2>
+                
+               
+                <h3>Early 20th Century – The Birth of Modern Robotics</h3>
+                <div>
+                    <div><strong>Asimov's Three Laws of Robotics</strong></div>
+                    <ol>
+                        <li>A robot may not harm a human or allow harm through inaction</li>
+                        <li>A robot must obey human orders (unless it conflicts with Law 1)</li>
+                        <li>A robot must protect itself (unless it conflicts with Laws 1 or 2)</li>
+                    </ol>
+                    <p>Later: <strong>Zeroth Law</strong> – A robot may not harm humanity as a whole</p>
+                </div>
+
+                <h3>Imagination to Industry (1950s-1960s)</h3>
+                <ul>
+                    <li><strong>Unimate (1956):</strong> First industrial robot working at GM</li>
+                    <li><strong>Shakey (1966):</strong> First mobile robot with AI at SRI</li>
+                </ul>
+
+                <h3>Robots Take Shape (1970s–80s)</h3>
+                <ul>
+                    <li><strong>WABOT-1 (1973):</strong> First full-scale humanoid robot from Japan</li>
+                    <li><strong>PUMA (1978):</strong> Programmable Universal Machine for Assembly</li>
+                </ul>
+
+                <h3>Robots Reach the World (1990s)</h3>
+                <ul>
+                    <li><strong>RoboTuna (1994):</strong> MIT's robotic fish that swam with fluid dynamics</li>
+                    <li><strong>Sojourner (1996):</strong> First Mars rover</li>
+                    <li><strong>AIBO (1999):</strong> Sony's robotic pet dog</li>
+                </ul>
+
+                <h3>Humans Meet Their Mechanical Mirror (2000s)</h3>
+                <ul>
+                    <li><strong>ASIMO (2000):</strong> Honda's advanced humanoid</li>
+                    <li><strong>Stanley (2005):</strong> Stanford's autonomous car won DARPA challenge</li>
+                </ul>
+
+                <h3>Intelligence Awakens (2010s)</h3>
+                <ul>
+                    <li><strong>Watson (2011):</strong> IBM's AI won Jeopardy!</li>
+                    <li><strong>Pepper (2014):</strong> First social humanoid robot</li>
+                    <li><strong>Spot (2016):</strong> Boston Dynamics' quadruped robot</li>
+                </ul>
+
+                <h3>Robots of Today (2020s)</h3>
+                <ul>
+                    <li><strong>Perseverance (2021):</strong> NASA's Mars rover with AI</li>
+                    <li><strong>Ameca (2022):</strong> Human-like facial expressions</li>
+                    <li><strong>Unitree Go2 (2023):</strong> Personal companion robot</li>
+                </ul>
+            </section>
+
+            <!-- Additional sections for Anatomy, Ethics, Future, and Benefits would follow similar structure -->
+            
+           
+            </section>
+            <section id="anatomy">
+                <h2>The Anatomy of a Robot: Building the Machines of Tomorrow</h2>
+                <p>Before a robot can move, think, or learn—it must be built. And like the human body, a robot is more than a collection of parts. It is an integrated system, where every component—mechanical, electronic, and digital—works together to bring intelligence into motion.</p>
+                <p>Let's explore what makes a robot a robot.</p>
+
+                <h3>The Physical Body: The Foundation of Robotics</h3>
+                <p>Think of this as the robot's skeleton and skin—the structure that gives it form and movement.</p>
+                <p>Robots come in all shapes and sizes:</p>
+                <ul>
+                    <li>The strong, rigid arms of an industrial SCARA robot, designed for high-speed precision tasks like circuit assembly.</li>
+                    <li>The sleek, two-legged stance of ASIMO, designed to mimic human balance and walk in complex environments.</li>
+                    <li>Or the rolling wheels and rugged treads of a Mars rover, built to traverse rocky alien landscapes.</li>
+                </ul>
+                <p>The shape of the body isn't just aesthetics—it defines what the robot can and cannot do. A robot's body is its toolset, chosen based on its mission.</p>
+
+                <h3>Sensors: The Eyes and Ears of a Robot</h3>
+                <p>What good is a body if it can't sense the world around it?</p>
+                <p>Sensors are how a robot sees, hears, and feels:</p>
+                <ul>
+                    <li>Ultrasonic sensors bounce sound waves off nearby objects, letting a robot "hear" its surroundings to avoid obstacles.</li>
+                    <li>Cameras give a robot vision—essential for object recognition, navigation, or even reading labels and signs.</li>
+                    <li>Infrared, LiDAR, IMUs, and microphones add even more senses—allowing the robot to build a full picture of its environment.</li>
+                </ul>
+                <p>Just like we rely on our senses to make decisions, robots use sensor data to drive intelligent behavior.</p>
+
+                <h3>Effectors: The Hands and Feet of a Robot</h3>
+                <p>Now that a robot can perceive—it needs to act. That's where effectors come in.</p>
+                <p>These are the robot's tools for interacting with the physical world:</p>
+                <ul>
+                    <li>Motors drive its wheels, swing its arms, or rotate its neck.</li>
+                    <li>Grippers pick up and place items—from pincers to complex five-fingered hands.</li>
+                    <li>On a Mars rover, effectors lift soil samples and adjust scientific instruments. On a warehouse bot, they carry parcels from shelf to truck.</li>
+                </ul>
+                <p>Just like muscles respond to your brain's commands, a robot's effectors respond to its controller—translating data into movement.</p>
+
+                <h3>Controllers: The Robot's Brain</h3>
+                <p>And finally, we meet the brains behind the bot.</p>
+                <p>Controllers are where everything comes together:</p>
+                <ol>
+                    <li>They receive data from sensors.</li>
+                    <li>They process it, using logic, rules, or machine learning.</li>
+                    <li>And then they send commands to effectors to make decisions real.</li>
+                </ol>
+                <p>From a tiny microcontroller running a toy robot to a complex AI-powered onboard computer in a driverless car—controllers vary, but the role stays the same.</p>
+                <p>This is what turns metal into mind—control logic is the difference between automation and autonomy.</p>
+
+                <div class="note">
+                    <p>When we say "robot," we're not just talking about a machine.</p>
+                    <p>We're talking about a system:</p>
+                    <ul>
+                        <li>A body to move</li>
+                        <li>Senses to feel</li>
+                        <li>Tools to act</li>
+                        <li>And a brain to decide</li>
+                    </ul>
+                    <p>Together, these parts create the intelligent machines that are transforming industries, assisting in hospitals, exploring outer space, and even entering our homes.</p>
+                </div>
+            </section>
+
+            <section id="ethics">
+                <h2>The Ethical and Social Implications of Robotics: A Double-Edged Sword</h2>
+                <p>As we march into a world increasingly shaped by robots, we must ask not just how we build them—but why, for whom, and with what consequences?</p>
+                <p>Robots are more than mechanical helpers. They are mirrors reflecting our values—and sometimes, our vulnerabilities.</p>
+
+                <h3>Job Displacement: The Dark Side of Automation</h3>
+                <p>Robots don't take breaks. They don't go on strike. They don't get tired. In factories, warehouses, and offices, automation is replacing human labor—fast.</p>
+                <p>But is it all bad?</p>
+                <p>While some jobs fade, others emerge: robot technicians, AI ethicists, drone operators, and data analysts. The key lies not in resisting robots—but in preparing people.</p>
+                <p>The future belongs to those who can adapt, not compete. Our challenge is to ensure that the economic benefits of robotics aren't concentrated in the hands of a few, but uplift society as a whole.</p>
+
+                <h3>Privacy and Surveillance: The Eyes That Never Blink</h3>
+                <p>A robot fitted with cameras and microphones can be incredibly helpful... or incredibly intrusive.</p>
+                <p>Imagine a security robot in a shopping mall, silently recording every passerby. Who owns that data? Who decides how it's used?</p>
+                <p>The more robots we deploy into public and private spaces, the more we must ask:</p>
+                <ul>
+                    <li>Where do we draw the line?</li>
+                    <li>What are we willing to give up in exchange for convenience or safety?</li>
+                </ul>
+                <p>The challenge is to find a balance—between innovation and the individual's right to privacy.</p>
+
+                <h3>Safety and Liability: Who's Responsible When Robots Fail?</h3>
+                <p>A robotic arm smashes a product on the factory line. An autonomous car swerves into traffic. A hospital assistant gives a wrong medication cue.</p>
+                <p>Who's to blame?</p>
+                <ul>
+                    <li>The engineer who built it?</li>
+                    <li>The company that deployed it?</li>
+                    <li>The AI that made the decision?</li>
+                </ul>
+                <p>As machines become more autonomous, accountability becomes more complex. We need new legal frameworks, new standards, and new ways of thinking about responsibility in the age of robotics.</p>
+            </section>
+
+            <section id="future">
+                <h2>The Future of Robotics: A World of Infinite Possibilities</h2>
+                <p>Despite the challenges, the future of robotics shines with promise.</p>
+                <p>According to the World Economic Forum's Future of Jobs Report, robots and automation will transform over half of all businesses by 2030.</p>
+                <p>While machines will take on more routine tasks, humans will be freed to focus on creativity, problem-solving, and innovation.</p>
+
+                <h3>Soft Robotics: The Emergence of Flexible Machines</h3>
+                <p>What if robots could squish, stretch, and wiggle their way through the world?</p>
+                <p>Soft robotics is making that a reality—with robots inspired by octopuses, worms, and jellyfish. Made from pliable materials, these robots are ideal for:</p>
+                <ul>
+                    <li>Crawling through rubble in search-and-rescue missions</li>
+                    <li>Delicately handling fragile biological tissues in surgery</li>
+                    <li>Exploring environments too dangerous for humans or rigid machines</li>
+                </ul>
+                <p>They aren't just soft—they're smart.</p>
+                <img src="images/clone robots.jpg" alt="Turtlesim Example" style="max-width:100%; height:250px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+                <h3>Swarm Robotics: The Power of Collaboration</h3>
+                <p>One robot is smart. But a swarm of robots? That's brilliance in motion.</p>
+                <p>Inspired by insects like ants and bees, swarm robotics focuses on simple machines that—when working together—can perform complex tasks.</p>
+                <p>Imagine:</p>
+                <ul>
+                    <li>Hundreds of tiny drones surveying disaster zones</li>
+                    <li>Fleets of bots tending to farms, pollinating plants, and harvesting crops</li>
+                    <li>Cleaning up oil spills, exploring oceans, or assembling structures autonomously</li>
+                </ul>
+                <img src="images/drone-swarm.jpg" alt="Turtlesim Example" style="max-width:100%; height:250px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+
+                <h3>Human-Robot Collaboration: A New Era of Partnership</h3>
+                <p>As robots grow more capable, their greatest role may not be to replace us—but to work with us.</p>
+                <p>We're entering an era of co-bots:</p>
+                <ul>
+                    <li>In hospitals, assisting surgeons with millimeter-precision</li>
+                    <li>In homes, supporting the elderly or disabled</li>
+                    <li>In factories, taking on dangerous or repetitive work side-by-side with humans</li>
+                </ul>
+                <p>These partnerships rely on trust, design, and safety—because the best robots don't just obey commands—they understand human needs.</p>
+                <img src="images/hrc.jpg" alt="Turtlesim Example" style="max-width:100%; height:250px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+
+                <h3>Brain-Computer Interfaces: The Ultimate Fusion of Man and Machine</h3>
+                <p>Now imagine controlling a robot with your thoughts.</p>
+                <p>Brain-computer interfaces (BCIs) are pushing the boundaries of what's possible. Electrodes placed on the scalp—or even implanted—can translate brain signals into commands for machines.</p>
+                <p>Applications include:</p>
+                <ul>
+                    <li>Letting paralyzed individuals control robotic limbs</li>
+                    <li>Piloting drones with your mind</li>
+                    <li>Creating hands-free communication systems</li>
+                </ul>
+                <img src="images/bci.jpg" alt="Turtlesim Example" style="max-width:100%; height:250px; display:block; margin:20px auto; border:1px solid #ddd; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+
+            </section>
+            <section id="benefits">
+                <h2>The Benefits of Robotics: Yesterday, Today, and Tomorrow</h2>
+                <p>From clunky mechanical arms to intelligent humanoid assistants, the story of robots is a story of evolution—of machines that learned, adapted, and grew with us.</p>
+                <p>Let's take a journey through time and witness how robotic benefits have transformed across three key eras: The Past, The Present, and The Future.</p>
+
+                <div class="table-container">
+                    <table class="benefits-timeline">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Past (Before 2000s)</th>
+                                <th>Present (2020s)</th>
+                                <th>Future (2030s & Beyond)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Automation</td>
+                                <td>Repetitive factory tasks</td>
+                                <td>AI-driven industrial optimization</td>
+                                <td>Fully autonomous ecosystems with seamless human-machine integration</td>
+                            </tr>
+                            <tr>
+                                <td>Safety</td>
+                                <td>Took over dangerous tasks</td>
+                                <td>AI-powered workplace safety</td>
+                                <td>Near-zero accidents through real-time risk prediction and mitigation</td>
+                            </tr>
+                            <tr>
+                                <td>Human Interaction</td>
+                                <td>Limited to manufacturing</td>
+                                <td>Social robots, virtual assistants</td>
+                                <td>Emotionally aware humanoids, companions with personality and empathy</td>
+                            </tr>
+                            <tr>
+                                <td>AI & Learning</td>
+                                <td>Pre-programmed responses</td>
+                                <td>Adaptive, decision-making systems</td>
+                                <td>Robots with human-like reasoning and moral decision-making capabilities</td>
+                            </tr>
+                            <tr>
+                                <td>Environmental Impact</td>
+                                <td>Energy-heavy, limited sustainability</td>
+                                <td>Greener robots, lower emissions</td>
+                                <td>Eco-conscious robots using renewable energy and recycling capabilities</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="conclusion">
+                <h2>Conclusion: The Journey Ahead</h2>
+                <p>The tale of robotics is not just about circuits and code—it's a story about human ambition, curiosity, and the power of imagination.</p>
+                <p>From the first gear turning on a factory floor to a robot exploring the surface of Mars, we've come a long way. But this is just the beginning.</p>
+                <div class="note">
+                    <p>We must:</p>
+                    <ul>
+                        <li>Engineer with empathy</li>
+                        <li>Code with conscience</li>
+                        <li>Create not just machines, but futures worth living in</li>
+                    </ul>
+                    <p>Robotics is not just a field of study—it is a platform for shaping tomorrow.</p>
+                </div></section>
+                <section id="robot-zoo">
+                    <h2>The Robot Zoo: Classifying the Creatures of the Mechanical World</h2>
+                    <p>Welcome to the Robot Zoo, where instead of lions and tigers, you'll find quadrupeds, flying drones, and shape-shifting softbots. Just like animals in nature, robots come in many forms—and today, we'll classify them like robotic biologists.</p>
+    
+                    <div class="classification-section">
+                        <h3>Mobility Modes: How Robots Get Around</h3>
+                        <blockquote>"If animals crawl, fly, swim, and walk—why should robots be any different?"</blockquote>
+                        
+                        <div class="classification-table">
+                            <div class="classification-row header">
+                                <div class="classification-cell">Type</div>
+                                <div class="classification-cell">Description</div>
+                                <div class="classification-cell">Example</div>
+                                <div class="classification-cell">Image</div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Stationary Robots</div>
+                                <div class="classification-cell">Like trees rooted in place—stationary but powerful. These robots stay put but perform precise, repetitive tasks with high efficiency.</div>
+                                <div class="classification-cell">KUKA KR AGILUS – A high-speed industrial arm used in automation.</div>
+                                <div class="classification-cell"><img src="images\kuka kr agilus.png" alt="Unitree Go2 quadruped robot"></div>
+
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Wheeled Robots</div>
+                                <div class="classification-cell">The rollerbladers of robotics—fast and smooth on structured terrain.</div>
+                                <div class="classification-cell">TurtleBot 3 – A small, programmable robot ideal for research and navigation.</div>
+                                <div class="classification-cell"><img src="images\turtlebot3.png" alt="Unitree Go2 quadruped robot"></div>
+
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Legged Robots</div>
+                                <div class="classification-cell">Like mountain goats—adaptive and agile on rough terrain.</div>
+                                <div class="classification-cell">Unitree Go2 – A quadruped used for inspection and rescue.</div>
+                                <div class="classification-cell"><img src="images\go2.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Flying Robots</div>
+                                <div class="classification-cell">The hawks of robotics—soaring through skies for surveillance or delivery.</div>
+                                <div class="classification-cell">Parrot Anafi – A drone used in agriculture and surveying.</div>
+                                <div class="classification-cell"><img src="images\parrot anafi.png" alt="Unitree Go2 quadruped robot"></div>
+
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Underwater Robots</div>
+                                <div class="classification-cell">Silent swimmers exploring the unknown.</div>
+                                <div class="classification-cell">Bluefin-21 AUV – A deep-sea mapping robot used in oceanographic research.</div>
+                                <div class="classification-cell"><img src="images\bluefin21.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="classification-section">
+                        <h3>Purpose in the World: Application-Based Types</h3>
+                        <blockquote>"Some robots build cars, some save lives, and some tutor children."</blockquote>
+                        
+                        <div class="classification-table">
+                            <div class="classification-row header">
+                                <div class="classification-cell">Type</div>
+                                <div class="classification-cell">Description</div>
+                                <div class="classification-cell">Example</div>
+                                <div class="classification-cell">Image</div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Industrial Robots</div>
+                                <div class="classification-cell">The muscle of modern factories—accurate, fast, and relentless.</div>
+                                <div class="classification-cell">Staubli TX2-160 – A precision robotic arm used in pharma and automotive sectors.</div>
+                                <div class="classification-cell"><img src="images\staubli tx2-160.png" alt="Unitree Go2 quadruped robot"></div>
+
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Service Robots</div>
+                                <div class="classification-cell">Assistants, entertainers, and helpers in public or private spaces.</div>
+                                <div class="classification-cell">Miko 3 – An educational robot designed for children's learning and engagement.</div>
+                                <div class="classification-cell"><img src="images\miko3.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Exploration Robots</div>
+                                <div class="classification-cell">Pioneers of the extreme—space, oceans, volcanoes.</div>
+                                <div class="classification-cell">Pragyan Rover – ISRO's rover which was deployed as part of the Chandrayaan-3 mission.</div>
+                                <div class="classification-cell"><img src="images\pragyan rover.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="classification-section">
+                        <h3>Smarts and Autonomy: Brain Power Levels</h3>
+                        <blockquote>"Not all robots think alike. Some follow orders, some act on instinct."</blockquote>
+                        
+                        <div class="classification-table">
+                            <div class="classification-row header">
+                                <div class="classification-cell">Type</div>
+                                <div class="classification-cell">Description</div>
+                                <div class="classification-cell">Example</div>
+                                <div class="classification-cell">Image</div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Pre-Programmed Robots</div>
+                                <div class="classification-cell">Like a recipe book—followed step-by-step with no deviation.</div>
+                                <div class="classification-cell">Delta Robot – Used in fast, repetitive tasks like packaging.</div>
+                                <div class="classification-cell"><img src="images\delta robot.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Autonomous Robots</div>
+                                <div class="classification-cell">See, decide, and act on their own.</div>
+                                <div class="classification-cell">ANYmal – A robotic inspector for industrial facilities.</div>
+                                <div class="classification-cell"><img src="images\anymal.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Semi-Autonomous Robots</div>
+                                <div class="classification-cell">Think independently but check in with humans when needed.</div>
+                                <div class="classification-cell">Starship Robots – Autonomous delivery robots with remote supervision.</div>
+                                <div class="classification-cell"><img src="images\starship robot.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="classification-section">
+                        <h3>Structure and Skeletons: What They're Made Of</h3>
+                        <blockquote>"A robot's skeleton defines how it moves—like how a snake differs from a cheetah."</blockquote>
+                        
+                        <div class="classification-table">
+                            <div class="classification-row header">
+                                <div class="classification-cell">Type</div>
+                                <div class="classification-cell">Description</div>
+                                <div class="classification-cell">Example</div>
+                                <div class="classification-cell">Image</div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Articulated Robots</div>
+                                <div class="classification-cell">Multiple joints, high flexibility—like robot yoga practitioners.</div>
+                                <div class="classification-cell">Yaskawa GP25 – Used in welding and material handling.</div>
+                                <div class="classification-cell"><img src="images\yaskawa gp25.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Cartesian Robots</div>
+                                <div class="classification-cell">Moves in straight lines on X, Y, and Z axes.</div>
+                                <div class="classification-cell">FDM 3D Printer – Creates objects layer-by-layer.</div>
+                                <div class="classification-cell"><img src="images\fdm 3d printer.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Cylindrical Robots</div>
+                                <div class="classification-cell">Rotating base and linear movement—great for pick-and-place jobs.</div>
+                                <div class="classification-cell">Mitsubishi RV-2A – A compact automation robot.</div>
+                                <div class="classification-cell"><img src="images\mitsubishi rv2a.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Spherical Robots</div>
+                                <div class="classification-cell">Freely rolling or rotating, often used in education.</div>
+                                <div class="classification-cell">Sphero BOLT – A rolling robot used in STEM learning.</div>
+                                <div class="classification-cell"><img src="images\sphero bolt.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Additional sections would follow the same pattern -->
+                    <!-- Next-Gen Robots section example: -->
+                    <div class="classification-section">
+                        <h3>Next-Gen Robots: The Evolution is Here</h3>
+                        <blockquote>"Some robots breathe like jellyfish, others think like ants. The future is now."</blockquote>
+                        
+                        <div class="classification-table">
+                            <div class="classification-row header">
+                                <div class="classification-cell">Type</div>
+                                <div class="classification-cell">Description</div>
+                                <div class="classification-cell">Example</div>
+                                <div class="classification-cell">Image</div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Soft Robots</div>
+                                <div class="classification-cell">Flexible and deformable, ideal for delicate tasks.</div>
+                                <div class="classification-cell">Octobot – A fully soft, octopus-inspired robot.</div>
+                                <div class="classification-cell"><img src="images\soft robot.jpg" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Swarm Robots</div>
+                                <div class="classification-cell">Small, simple robots working together like ants or bees.</div>
+                                <div class="classification-cell">FlockBots – Used in research on collective behavior.</div>
+                                <div class="classification-cell"><img src="images\swarm robots.jpeg" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Humanoid Robots</div>
+                                <div class="classification-cell">Designed to look and act like humans.</div>
+                                <div class="classification-cell">Toyota T-HR3 – A robot that mimics human movements remotely.</div>
+                                <div class="classification-cell"><img src="images\humanoid.jpeg" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="classification-section">
+                        <h3>Powered by What? Energy Sources in Robots</h3>
+                        <blockquote>"Electric, hydraulic, pneumatic, or hybrid—robots run on more than batteries."</blockquote>
+                        
+                        <div class="classification-table">
+                            <div class="classification-row header">
+                                <div class="classification-cell">Type</div>
+                                <div class="classification-cell">Description</div>
+                                <div class="classification-cell">Example</div>
+                                <div class="classification-cell">Image</div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Electric Robots</div>
+                                <div class="classification-cell">Clean and precise, used in lightweight applications.</div>
+                                <div class="classification-cell">Baxter – A collaborative robot used in light manufacturing.</div>
+                                <div class="classification-cell"><img src="images\baxter.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Hydraulic Robots</div>
+                                <div class="classification-cell">Powerful and rugged, used for heavy lifting and dynamic tasks.</div>
+                                <div class="classification-cell">Atlas – A humanoid robot that performs backflips.</div>
+                                <div class="classification-cell"><img src="images\atlas.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Pneumatic Robots</div>
+                                <div class="classification-cell">Powered by air pressure—soft and safe.</div>
+                                <div class="classification-cell">Festo BionicCobot – Imitates the smooth motion of human muscles.</div>
+                                <div class="classification-cell"><img src="images\festo bioniccobot.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Hybrid Robots</div>
+                                <div class="classification-cell">Combines multiple sources for versatility.</div>
+                                <div class="classification-cell">Cheetah 3 – Uses electric and hydraulic systems for agility.</div>
+                                <div class="classification-cell"><img src="images\cheetah 3.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="classification-section">
+                        <h3>Control Styles: Who's in Charge?</h3>
+                        <blockquote>"Some are fully independent. Others still ask for permission."</blockquote>
+                        
+                        <div class="classification-table">
+                            <div class="classification-row header">
+                                <div class="classification-cell">Type</div>
+                                <div class="classification-cell">Description</div>
+                                <div class="classification-cell">Example</div>
+                                <div class="classification-cell">Image</div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Manual Control</div>
+                                <div class="classification-cell">Fully operated by humans.</div>
+                                <div class="classification-cell">PackBot – Used by military for bomb disposal.</div>
+                                <div class="classification-cell"><img src="images\packbot.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Semi-Autonomous</div>
+                                <div class="classification-cell">Shares control between robot and human.</div>
+                                <div class="classification-cell">Guardian XO – A robotic exosuit for industrial tasks.</div>
+                                <div class="classification-cell"><img src="images\guardian xo.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Fully Autonomous</div>
+                                <div class="classification-cell">Makes decisions and executes actions on its own.</div>
+                                <div class="classification-cell">AlphaDog – A robotic quadruped driven by AI.</div>
+                                <div class="classification-cell"><img src="images\alphadog.jpg" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="classification-section">
+                        <h3>Trends That Are Changing the World</h3>
+                        <blockquote>"The frontiers of robotics are expanding—faster, smarter, smaller."</blockquote>
+                        
+                        <div class="classification-table">
+                            <div class="classification-row header">
+                                <div class="classification-cell">Type</div>
+                                <div class="classification-cell">Description</div>
+                                <div class="classification-cell">Example</div>
+                                <div class="classification-cell">Image</div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Collaborative Robots (Cobots)</div>
+                                <div class="classification-cell">Work safely alongside humans.</div>
+                                <div class="classification-cell">Franka Emika Panda – Assists in delicate manufacturing tasks.</div>
+                                <div class="classification-cell"><img src="images\fr3.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">AI-Driven Robots</div>
+                                <div class="classification-cell">Learn, adapt, and make decisions.</div>
+                                <div class="classification-cell">Tesla Optimus – A humanoid robot aimed at daily automation.</div>
+                                <div class="classification-cell"><img src="images\tesla optimus.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Bio-Inspired Robots</div>
+                                <div class="classification-cell">Imitate nature for agility and efficiency.</div>
+                                <div class="classification-cell">Pleurobot – Inspired by salamanders for biomechanics research.</div>
+                                <div class="classification-cell"><img src="images\pleurobot.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Nanorobotics</div>
+                                <div class="classification-cell">Operate at microscopic scales in medical fields.</div>
+                                <div class="classification-cell">Microbots for Blood Clots – Travel through blood vessels for treatment.</div>
+                                <div class="classification-cell"><img src="images\nanorobot.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Robots in Action section example: -->
+                    <div class="classification-section">
+                        <h3>Robots in Action: Real-World Impact</h3>
+                        <blockquote>"From fields to flames, robots go where humans can't—or shouldn't."</blockquote>
+                        
+                        <div class="classification-table">
+                            <div class="classification-row header">
+                                <div class="classification-cell">Field</div>
+                                <div class="classification-cell">Description</div>
+                                <div class="classification-cell">Example</div>
+                                <div class="classification-cell">Image</div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Healthcare</div>
+                                <div class="classification-cell">Assist in surgery, diagnosis, and patient care.</div>
+                                <div class="classification-cell">CyberKnife – Delivers precise radiation therapy for cancer.</div>
+                                <div class="classification-cell"><img src="images\cyberknife.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Agriculture</div>
+                                <div class="classification-cell">Automate planting, irrigation, and harvesting.</div>
+                                <div class="classification-cell">Ecorobotix – Targets weeds with pinpoint herbicide delivery.</div>
+                                <div class="classification-cell"><img src="images\ecorobotix.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Warehousing</div>
+                                <div class="classification-cell">Optimize inventory and logistics.</div>
+                                <div class="classification-cell">Locus Robotics – Enhances efficiency in e-commerce fulfillment.</div>
+                                <div class="classification-cell"><img src="images\locusrobotics.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                            <div class="classification-row">
+                                <div class="classification-cell">Disaster Response</div>
+                                <div class="classification-cell">Help in rescue, fire, and hazardous environments.</div>
+                                <div class="classification-cell">Colossus – A firefighting robot used in emergency response.</div>
+                                <div class="classification-cell"><img src="images\colossus.png" alt="Unitree Go2 quadruped robot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        </main>
+
+        <footer>
+            <p>© 2025 Bidyut innovation. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>
